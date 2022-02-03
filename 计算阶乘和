@@ -1,0 +1,29 @@
+#include<stdio.h>
+//	int main()
+//	{
+//		int sum,i,Sum=0,p,N;
+//		scanf("%d",&N);	
+//		for(p=1;p<=N;p++)
+//		{
+//			for(i=1,sum=1;i<=p;i++)
+//			{
+//			sum*=i;
+//			}
+// 		Sum+=sum;
+//	}
+//		printf("%d\n",Sum);
+//		return 0;
+//	}
+//输入一个数N，计算阶乘和（1!+2!+3!+4!+…+N!）
+int main()
+{
+	int Sum=0,i,N,sum;
+	scanf("%d",&N);
+	for(i=1,sum=1;i<=N;i++)
+	{
+		sum*=i;
+		Sum+=sum;
+	}
+	printf("%d\n",Sum);
+	return 0;
+}
