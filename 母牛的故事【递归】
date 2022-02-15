@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+int number(int n);
+int main()
+{
+	int n=0,result1=0;
+	do
+	{
+		scanf("%d",&n);
+        result1=number(n);
+	    printf("%d\n",result1);
+	}while(n>0);
+	return 0;
+}
+int number(int n)
+{
+	if(n>0&&n<=3)
+	{
+		return n;
+	}
+	else if(n>3)
+	{ 
+		return number(n-1)+number(n-3);
+	}
+	else
+	{
+		exit(0) ;
+	}
+}
