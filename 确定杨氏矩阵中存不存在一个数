@@ -1,0 +1,41 @@
+#include<stdio.h>
+#define row 6
+#define col 6
+int findnum(int pointer[row][col],int k);
+int main()
+{
+	int k;
+	printf("请输入要寻找的数");
+	scanf("%d",&k);
+	int arr[row][col]={0};
+	for(int i=0;i<row;i++)
+	{
+		for(int j=0;j<col;j++)
+		{
+			scanf("%d",&arr[i][j]);
+		}
+	}
+    return findnum(arr,k);
+}
+int findnum(int pointer[row][col],int k)
+{
+	int i,j;
+	for( i=0,j=col-1;i>=0&&j>=0;)
+	{
+			if(pointer[i][j]<k)
+			{
+				i++;
+			}
+			else if(pointer[i][j]>k)
+			{
+				j--;
+			}
+			else if(pointer[i][j]==k)
+			{
+				printf("该元素首次出现的位置是第%d行，第%d列\n",i+1,j+1);
+				return 1;
+			}
+	}
+	printf("矩阵中没有此元素\n");
+	return 0;
+}
