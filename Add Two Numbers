@@ -1,0 +1,89 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+
+struct ListNode* addTwoNumbers(struct ListNode* l1, struct ListNode* l2)
+{
+	struct ListNode* s1=l1;
+	int i=1;
+	long long sum1=0;
+	if(s1->next==NULL)
+	{ 
+		sum1=s1->val; 
+	}
+	else
+	{
+		while(s1->next!=NULL)
+		{
+			i++;
+			s1=s1->next;
+		}
+		s1=l1; 
+		int j=1;
+		for(j=i;j<=i&&j>=1;j--)
+		{
+			sum1+=(s1->val)*pow(10,i-j);
+			if(s1->next!=NULL)
+			{
+				s1=s1->next;
+			} 
+		}  
+	} 
+	struct ListNode* s2=l2;
+	int m=1;
+	long long sum2=0;
+	if(s2->next==NULL)
+	{
+		sum2=s2->val;
+	}
+	else
+	{
+		while(s2->next!=NULL)
+		{
+			m++;
+			s2=s2->next;
+		}
+		s2=l2;
+		int n=1;
+		for(n=m;n<=m&&n>=1;n--)
+		{
+			sum2+=(s2->val)*pow(10,m-n);
+			if(s2->next!=NULL)
+			{
+				s2=s2->next;
+			}
+		}
+	}
+	long long Sum=0;
+	Sum=sum1+sum2;
+	struct ListNode* head=(struct ListNode*)malloc(sizeof(struct ListNode));
+    struct ListNode* s3;
+	s3=head;
+	if(Sum!=0)
+	{
+		while(Sum!=0)
+		{
+			s3->val=Sum%10;
+			Sum/=10;
+			if(Sum!=0)
+			{
+				s3->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+				s3=s3->next;
+			}
+			else
+			{
+				s3->next=NULL;
+			}
+		}
+	}
+	else
+	{
+		head->val=0;
+		head->next=NULL;
+	}
+	return head;
+}
