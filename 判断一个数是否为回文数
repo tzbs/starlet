@@ -1,0 +1,97 @@
+#include<stdio.h>
+#include<malloc.h>
+int isPalindrome(int x)
+{
+	struct ListNode
+	{
+		int val;
+		struct ListNode *previous;
+		struct ListNode *next;
+	};
+	struct ListNode *s1=(struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode *s2,*s3;
+	s1->previous=NULL;
+	s2=s1;
+	s3=s1;
+	if(x>=10)
+	{
+		while(x>=10)
+		{
+			s1->val=x%10;
+			x/=10;
+			if(x>=10)
+			{
+				s1->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+				s1->next->previous=s1;
+				s1=s1->next;	
+			}
+		}
+		s1->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		s1->next->previous=s1;
+		s1=s1->next;
+		s1->val=x;
+		s1->next=NULL;
+		int i=1;
+		while(s2!=s1)
+		{
+			s2=s2->next;
+			i++;
+		}
+		if(i%2==1)
+		{
+			while(s3!=s1)
+			{
+				if(s3->val!=s1->val)
+				{
+					return 0;
+				}
+				else
+				{
+					s1=s1->previous;
+					s3=s3->next;
+				}
+			}
+			return 1;	
+		}
+		else
+		{
+			while(s3->next!=s1)
+			{
+				if(s3->val!=s1->val)
+				{
+					return 0;
+				}
+				else
+				{
+					s1=s1->previous;
+					s3=s3->next;
+				}
+			}
+			if(s3->val==s1->val)
+			{
+				return 1;
+			}
+			else
+			{
+				return 0;
+			}
+		}
+				
+	}
+	else if(x<10&&x>=0)
+	{
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}	
+} 
+int main()
+{
+	int x;
+	scanf("%d",&x);
+	int m=isPalindrome(x);
+	printf("%d",m);
+	return 0;
+}
