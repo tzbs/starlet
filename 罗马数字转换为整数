@@ -1,0 +1,92 @@
+#include<stdio.h>
+#include<malloc.h>
+int romanToInt(char *s)
+{
+	struct ListNode
+	{
+		char val;
+		struct ListNode *next;
+	};
+	struct ListNode1
+	{
+		int val1;
+		struct ListNode1 *next1;
+	};
+	int sum=0;
+	char *l1=s;
+	struct ListNode *l2=(struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode *l3;
+	struct ListNode1 *l4=(struct ListNode1*)malloc(sizeof(struct ListNode1));
+	struct ListNode1 *l5=l4;
+	l3=l2;
+	l2->val=*s;
+	int i=0;
+	while((*s)!='\0')
+	{
+		s++;
+		l2->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		l2=l2->next;
+		l2->val=*s;
+		i++; 
+	}
+	l2->next=NULL;
+	while(l3!=l2)
+	{
+		if(l3->val=='I')
+		{
+			l4->val1=1;
+		}
+		else if(l3->val=='V')
+		{
+			l4->val1=5;
+		}
+		else if(l3->val=='X')
+		{
+			l4->val1=10;
+		}
+		else if(l3->val=='L')
+		{
+			l4->val1=50;
+		}
+		else if(l3->val=='C')
+		{
+			l4->val1=100;
+		}
+		else if(l3->val=='D')
+		{
+			l4->val1=500;
+		}
+		else if(l3->val=='M')
+		{
+			l4->val1=1000;
+		}
+		l4->next1=(struct ListNode1*)malloc(sizeof(struct ListNode));
+		l4=l4->next1;
+		l3=l3->next;
+	}
+	l4->val1=0;
+	l4->next1=NULL;
+	while(l5!=l4)
+	{
+		if((l5->val1)>=(l5->next1->val1))
+		{
+			sum+=l5->val1;
+		}
+		else
+		{
+			sum+=(l5->next1->val1)-(l5->val1);
+			l5=l5->next1;
+		}
+		l5=l5->next1;
+	}
+	return sum;
+}
+int main()
+{
+	char s1[20]; 
+	scanf("%s",s1);
+	int t=romanToInt(s1);
+	printf("%d\n",t);
+	return 0;
+	
+} 
