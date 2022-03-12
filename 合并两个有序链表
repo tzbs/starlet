@@ -1,0 +1,129 @@
+#include<stdio.h>
+#include<malloc.h> 
+struct ListNode
+{
+    int val;
+    struct ListNode *next;
+};
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2)
+{
+	struct ListNode *s1,*s2;
+	s1=list1;
+	s2=list2;
+	if(list1==NULL&&list2==NULL)
+	{
+		return list1;
+	} 
+	else if(list1==NULL)
+	{
+		return list2;
+	}
+	else if(list2==NULL)
+	{
+		return list1;
+	}
+	struct ListNode *s4=(struct ListNode*)malloc(sizeof(struct ListNode));
+	s4->next=list2;
+	struct ListNode *s5=s4;
+	while(list1!=NULL)
+	{
+		if(s1->val<=s2->val)
+		{
+			list1=list1->next;
+			s1->next=s2;
+			s4->next=s1;	
+			s1=list1;
+		}
+		else if(s1->val>=s2->val)
+		{
+			do
+			{
+				if(s2->next!=NULL)
+				{
+					s2=s2->next;
+					while(list2->next!=s2)
+					{
+						list2=list2->next;
+					}
+					if(s1->val<=s2->val)
+					{
+						list1=list1->next;
+						s1->next=s2;
+						list2->next=s1;
+						list2=list2->next;
+						s1=list1;
+						break;
+					}
+				}
+				else
+				{
+					s2->next=s1;
+					return s5->next;
+				}
+			}while(s2!=NULL);
+			if(s2==NULL&&s1==NULL)
+			{
+				return s5->next;
+			}
+			else if(s2==NULL)
+			{
+				s2->next=s1;
+				return s5->next;
+			}
+		}
+		while(s4->next!=s2)
+		{
+			s4=s4->next;
+		}
+	}
+	return s5->next;
+}
+int main()
+{
+	struct ListNode *l1,*l2;
+	l1=(struct ListNode*)malloc(sizeof(struct ListNode));
+	l2=(struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode *s1,*s2;
+	s1=l1;
+	s2=l2;
+	printf("请输入第一个链表第一个结点的值  "); 
+	scanf("%d",&(s1->val));
+	printf("\n");
+	int i=0,j=1;
+	printf("输入链表的结点总数(>=1)  ");
+	scanf("%d",&i);
+	printf("\n");
+	while(j<i)
+	{
+		s1->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		s1=s1->next;
+		printf("输入一个值，放置于结点数据域\n");
+		scanf("%d",&(s1->val));
+		j++;
+	}
+	s1->next=NULL;
+	printf("请输入第二个链表第一个结点的值  "); 
+	scanf("%d",&(s2->val));
+	printf("\n");
+	int m=0,n=1;
+	printf("输入链表的结点总数(>=1)  ");
+	scanf("%d",&m);
+	printf("\n");
+	while(n<m)
+	{
+		s2->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		s2=s2->next;
+		printf("输入一个值，放置于结点数据域\n");
+		scanf("%d",&(s2->val));
+		n++;
+	}
+	s2->next=NULL;
+	s1=mergeTwoLists(l1,l2);
+	int xx=0;
+	for(xx=0;xx<2;xx++)
+	{
+		printf("%d ",s1->val);
+		s1=s1->next;
+	}//for循环用于输出，可根据合成链表的总结点数做合适修改。 
+	return 0;
+}
