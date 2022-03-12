@@ -1,0 +1,110 @@
+#include<stdio.h>
+#include<malloc.h> 
+struct ListNode {
+     int val;
+     struct ListNode *next;
+};
+
+struct ListNode* swapPairs(struct ListNode* head)
+{
+	struct ListNode *s1=head;
+	struct ListNode *s2;
+	struct ListNode *kk=(struct ListNode*)malloc(sizeof(struct ListNode));
+	if(s1==NULL)
+	{
+		return s1;
+	} 
+	else if(s1->next==NULL)
+	{
+		return s1;
+	}
+	else
+	{
+		int i=0;
+		while(s1!=NULL)
+		{
+			i++;
+			s1=s1->next;
+		}
+		s1=head;
+		kk->next=s1;
+		s2=kk;
+		if(i%2==0)
+		{
+			while(head->next!=NULL)
+			{
+				head=head->next;
+				s1->next=head->next;
+				head->next=s1;
+				kk->next=head;
+				head=s1->next;
+				if(head==NULL)
+				{
+					return s2->next;
+				}
+				else
+				{
+					kk=s1;
+					s1=s1->next;
+				}
+			}	
+		}
+		else if(i%2==1)
+		{
+			struct ListNode *s3=s1;
+			while(s3->next!=NULL)
+			{
+				s3=s3->next;				
+			} 
+			while(head->next!=NULL)
+			{
+				head=head->next;
+				s1->next=head->next;
+				head->next=s1;
+				kk->next=head;
+				head=s1->next;
+				if(head==s3)
+				{
+					return s2->next;
+				}
+				else
+				{
+					kk=s1;
+					s1=s1->next;
+				}
+			}	
+		} 
+	}
+}
+int main()
+{
+	struct ListNode *l1;
+	l1=(struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode *s1,*s2;
+	s1=l1;
+	printf("请输入第一个链表第一个结点的值  "); 
+	scanf("%d",&(s1->val));
+	printf("\n");
+	int i=0,j=1;
+	printf("输入链表的结点总数(>=1)  ");
+	scanf("%d",&i);
+	printf("\n");
+	while(j<i)
+	{
+		s1->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		s1=s1->next;
+		printf("输入一个值，放置于结点数据域\n");
+		scanf("%d",&(s1->val));
+		j++;
+	}
+	s1->next=NULL;
+	s2=swapPairs(l1);
+	int xx=0;
+	for(xx=0;xx<20;xx++)//'20'可修改 
+	{
+		printf("%d ",s2->val);
+		s2=s2->next;
+	}
+	//用于检验swapPairs函数。 
+	return 0;
+}
