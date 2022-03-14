@@ -1,0 +1,86 @@
+#include<stdio.h>
+#include<malloc.h>
+struct ListNode 
+{
+  int val;
+  struct ListNode *next; 
+};
+struct ListNode* removeNthFromEnd(struct ListNode* head, int n)
+{
+	struct ListNode *kk,*s1;
+	kk=(struct ListNode*)malloc(sizeof(struct ListNode));
+	s1=head;
+	kk->next=head;
+	if(head->next==NULL)
+	{
+		head=NULL;
+		return head;
+	}
+	else
+	{
+		int i=0;
+		while(s1)
+		{
+			i++;
+			s1=s1->next;
+		}
+        struct ListNode *s2=head;
+        int t=i-n;
+        while(t)
+        {
+        	s2=s2->next;
+        	t--;
+		}
+		int m=i-n-1;
+		if(m>=0)
+		{
+			while(m)
+			{
+				head=head->next;
+				m--;
+			}
+			head->next=head->next->next;
+			s2->next=NULL;
+			return kk->next;	
+		}
+		else
+		{
+			kk->next=head->next;
+			head->next=NULL;
+			return kk->next;	
+		}
+	}
+}
+int main()
+{
+	struct ListNode *l1,*l2;
+	l1=(struct ListNode*)malloc(sizeof(struct ListNode));
+	struct ListNode *s1;
+	s1=l1;
+	printf("请输入第一个链表第一个结点的值  "); 
+	scanf("%d",&(s1->val));
+	printf("\n");
+	int i=0,j=1;
+	printf("输入链表的结点总数(>=1)  ");
+	scanf("%d",&i);
+	printf("\n");
+	while(j<i)
+	{
+		s1->next=(struct ListNode*)malloc(sizeof(struct ListNode));
+		s1=s1->next;
+		printf("输入一个值，放置于结点数据域\n");
+		scanf("%d",&(s1->val));
+		j++;
+	}
+	s1->next=NULL;
+	int m;
+	printf("输入要删除的节点位数(倒数) ");
+	scanf("%d",&m);
+	l2=removeNthFromEnd(l1,m);
+	while(l2)
+	{
+		printf("%d ",l2->val);
+		l2=l2->next;
+	}
+	return 0;
+}
