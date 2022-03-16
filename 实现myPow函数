@@ -1,0 +1,45 @@
+double myPow(double x,int n)
+{
+	if(n==0)
+	{
+		return 1.0;
+	}
+	if(n==1)
+	{
+		return x;
+	}
+    if(x==1.0)
+    {
+        if(n%2==0)
+        {
+            return x;
+        }
+    }
+	if(n>0)
+	{
+		double xx=x;
+		if(n%2==0)
+		{
+			return myPow(x,n/2)*myPow(x,n/2);
+		}
+		else if(n%2==1)
+		{
+			return x*myPow(x,n/2)*myPow(x,n/2);
+		}	
+	}
+	else if(n<0)
+	{
+		double xx=x;
+		long long nn;
+        nn=-(long long)n;
+		if(nn%2==0)
+		{
+			return 1/(myPow(x,nn/2)*myPow(x,nn/2));
+		}
+		else if(nn%2==1)
+		{
+			return 1/(x*myPow(x,nn/2)*myPow(x,nn/2));
+		}		
+	}
+    return 0;
+}
