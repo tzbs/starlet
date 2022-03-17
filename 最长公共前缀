@@ -1,0 +1,55 @@
+char* longestCommonPrefix(char ** strs, int strsSize)
+{
+	if(strsSize==0)
+	{
+		return NULL;	
+	} 
+	else if(strsSize==1)
+	{
+		return strs[0];
+	}
+	int i=0;
+	int ii=0;
+	int j=1;
+	int m=0;
+	while(j<strsSize)
+	{
+		if(strlen(*(strs+i))<=strlen(*(strs+ii+j)))
+		{
+			j++;
+		}
+		else
+		{
+			
+			i++; 
+		}	
+	}
+	m=strlen(*(strs+i));
+	char*zfc=*(strs+i);
+	int t=0;
+	int e=0;
+	for(e=0;e<m;e++)
+	{
+		for(t=0;t<strsSize-1;)
+		{
+			if(*(strs[t]+e)==*(strs[t+1]+e))
+			{
+				t++;
+			}
+			else if(e==0)
+			{
+				return "";
+			}
+			else if(e>0)
+			{
+				strs[0][e]='\0';
+				return strs[0];
+			}
+		}
+	}
+	if(e==m)
+	{
+		return zfc;
+	}
+    return 0;
+} 
