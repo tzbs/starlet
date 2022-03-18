@@ -1,0 +1,60 @@
+int removeDuplicates(int* nums, int numsSize)
+{
+	if(numsSize==0)
+	{
+		return 0;
+	}
+	if(numsSize==1)
+	{
+		return 1;
+	}
+	else if(numsSize>1)
+	{
+		int i=1;
+		int *s1=nums;
+		int *s2=&nums[1];
+		int *rear;
+		rear=&nums[0];
+		int *s3=&nums[0];
+		int j=0;
+		while(j<numsSize-1)
+		{
+			rear++;
+			j++;
+		}
+		if(s2==rear)
+		{
+			return *s1==*s2?1:2;
+		}
+		while(s2!=rear)
+		{
+			if(*s2>*s1)
+			{
+				s1++;
+				s2++;
+			}
+			else if(*s2==*s1)
+			{
+               if(s2!=rear)
+               {
+                   while(s2!=rear)
+				   {
+				    	*s2=*(s2+1);
+					    s2++;
+				   }
+                   rear--;
+                   s2=s1+1;
+               }
+			}
+		}
+		while(s3!=rear)
+		{
+			i++;
+			s3++;
+		}
+		if(*rear==*(rear-1))
+		return i-1;
+		return i;	
+	}
+    return 0;
+}
