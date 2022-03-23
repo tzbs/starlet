@@ -1,0 +1,75 @@
+void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n)
+{
+	if(m==0)
+	{
+		int i=0;
+		while(i<n)
+		{
+			nums1[i]=nums2[i];
+			i++;
+		}
+	} 
+	else if(n==0)
+	{
+		;
+	}
+	else
+	{
+		int *array2=(int *)malloc(sizeof(int)*(nums1Size+1));
+		int i=0;
+        int array2Size=m;
+		int j=0;
+		while(i<m)
+		{
+			array2[i+1]=nums1[i];
+			i++;
+		} 
+		array2[0]=nums2[0]-1;
+		int ii=0;
+		while(ii<n)
+		{
+			while(j<array2Size)
+			{
+				if(array2[j]<=nums2[ii]&&array2[j+1]>=nums2[ii])
+				{
+					while(m-j>=1)
+					{
+						array2[m+1]=array2[m];
+						m--;
+					}
+					array2[j+1]=nums2[ii];
+                    array2Size++;
+					m=array2Size;
+					break;
+				}
+				else
+				{
+					j++;
+				}
+			}
+            if(j==array2Size)
+            {
+                while(ii<n)
+                {
+                    array2[j+1]=nums2[ii];
+                    ii++;
+                    j++;
+                }
+            }
+            else
+            {
+                ii++;
+                j++;
+            }
+		}
+		int *s1;
+		int rr=0;
+		while(rr<nums1Size)
+		{
+			nums1[rr]=array2[rr+1];
+			rr++;
+		}
+	}
+    return 0;
+
+}
