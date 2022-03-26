@@ -1,0 +1,36 @@
+int majorityElement(int* nums, int numsSize)
+{
+	if(numsSize==1)
+	{
+		return 1;
+	}
+	else
+	{
+		int i=0;
+		int m=0;
+		int *s2=&nums[0];
+		int *s3=&nums[numsSize-1];
+		while(s2<=s3)
+		{
+			m=0;
+			i=0;
+			while(s2+m<=s3)
+			{
+				if(*(s2+m)==*(s2))
+				{
+					i++;
+				}
+				m++;
+			}
+			if(i>numsSize/2)
+			{
+				return *s2;
+			}
+			else
+			{
+				s2++;
+			}
+		}
+        return 0;
+	} 
+}
