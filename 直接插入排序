@@ -1,0 +1,29 @@
+#include<stdio.h>
+int *InsertSort(int *nums,int numsSize)
+{
+	int m,n,e;
+	e=1;
+	while(e<numsSize)
+	{
+		m=nums[e];
+		for(n=e-1;n>=0&&m<nums[n];n--)
+		{
+			nums[n+1]=nums[n];
+		}
+		nums[n+1]=m;
+		e++;
+	}
+	return &nums[0];
+} 
+int main()
+{
+	int nums1[10]={9,8,7,6,5,4,3,2,1,0};
+	int nums1Size=sizeof(nums1)/sizeof(nums1[0]);
+	int *s1=InsertSort(nums1,nums1Size);
+	int i=0;
+	for(i=0;i<nums1Size;i++)
+	{
+		printf("%d ",s1[i]);
+	}
+	return 0;
+}
