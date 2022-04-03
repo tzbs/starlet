@@ -1,0 +1,61 @@
+void PercDown(char array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ char * HeapSort(char array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ } 
+char findTheDifference(char * s, char * t)
+{
+	if(s=="")
+	{
+		return *t;
+	}
+	else
+	{
+		int i,j;
+		i=0;
+		j=0;
+		s=HeapSort(s,strlen(s));
+		t=HeapSort(t,strlen(t));
+		while(*(s+i)==*(t+j))
+		{
+			i++;
+			j++;
+		}
+		return *(t+j);
+	}
+}
