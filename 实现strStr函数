@@ -1,0 +1,55 @@
+int strStr(char * haystack, char * needle)
+{
+	int e1=strlen(haystack);
+	int e2=strlen(needle);
+	int i,j;
+	i=0;
+	j=0;
+    int t=0;
+    int m=0;
+    int ii=0;
+	while(j<e2&&i<e1)
+	{
+		while(i<e1&&*(needle+j)!=*(haystack+i))
+		{
+			i++;
+            t++;
+		}
+        if(*(needle)==*(haystack+i))
+        {
+            ii++;
+            if(ii<=1)
+            {
+                m=i;
+            }
+        } 
+		if(i==e1)
+		{
+			return -1;
+		}
+		else
+		{
+			j++;
+            if(j>1&&t>0)
+            {
+                j=0;
+                i=m+1;
+                ii=0;
+            }
+            else
+            {
+                i=i+1;
+            }
+            t=0;
+		}
+	}
+	if(j==e2&&i<=e1)
+	{
+		return i-e2;
+	}
+	else if(j<e2)
+	{
+		return -1;
+	}
+    return 0;
+}
