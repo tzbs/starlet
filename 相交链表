@@ -1,0 +1,68 @@
+struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) 
+{
+	struct ListNode *s1=headA;
+	struct ListNode *s2=headB;
+	int m,n;
+	m=0;
+	n=0;
+	while(headA!=NULL)
+	{
+		headA=headA->next;
+		m++;	
+	}
+	while(headB!=NULL)
+	{
+		headB=headB->next;
+		n++;	
+	}
+    headA=s1;
+    headB=s2;
+    int j,k;
+    j=m;
+    k=1;
+    int t=1;
+    while(k<j)
+    {
+        while(t<n&&s1!=s2)
+        {
+                s2=s2->next;
+                t++;
+        }
+        if(s1==s2)
+        {
+            return s2;
+        }
+        else if(t==n)
+        {
+            s2=headB;
+            s1=s1->next;
+            t=1;
+        }
+        k++;
+    }
+    if(k==j)
+    {
+        if(m==1&&n==1)
+        {
+            if(s1==s2)
+            {
+                return s1;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+        if(s2->next==s1)
+        {
+            return s1;
+        }
+        else
+        {
+            return NULL;
+        }
+
+        
+    } 
+    return 0;
+}
