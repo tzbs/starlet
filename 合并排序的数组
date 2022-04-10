@@ -1,0 +1,28 @@
+int *InsertSort(int *nums,int numsSize)
+{
+	int m,n,e;
+	e=1;
+	while(e<numsSize)
+	{
+		m=nums[e];
+		for(n=e-1;n>=0&&m<nums[n];n--)
+		{
+			nums[n+1]=nums[n];
+		}
+		nums[n+1]=m;
+		e++;
+	}
+	return &nums[0];
+} 
+void merge(int* A, int ASize, int m, int* B, int BSize, int n)
+{
+	int i=0;
+    int j=0;
+	while(i<n)
+	{
+		A[m+j]=B[i++];
+        j++;
+	} 
+	A=InsertSort(A,m+n);
+	return ;
+}
