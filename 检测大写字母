@@ -1,0 +1,55 @@
+bool detectCapitalUse(char * word)
+{
+	int e=strlen(word);
+	if(e==1)
+	{
+		return true;
+	} 
+	else
+	{
+		int i,j,k;
+		i=1;
+		j=2;
+		k=2;
+		if(word[0]<=90)
+		{
+			if(word[1]>90)
+			{
+				while(j<e)
+				{
+					if(word[j]<=90)
+					{
+						return false;
+					}
+					j++;
+				}
+				return true;
+			}
+			else if(word[1]<=90)
+			{
+				while(k<e)
+				{
+					if(word[k]>90)
+					{
+						return false;
+					}
+					k++;
+				}
+				return true;
+			}	
+		}
+		else if(word[0]>90)
+		{
+			while(i<e)
+			{
+					if(word[i]<=90)
+					{
+						return false;
+					}
+					i++;
+			}
+			return true;
+		}
+	}
+	return true;
+}
