@@ -1,0 +1,77 @@
+int dayOfYear(char * date)
+{
+	char *s1;
+	s1=date;
+	int i=0;
+	int t=3;
+	int sum=0;
+	while(i<4&&t>=0)
+	{
+		sum+=(*(s1+i)-48)*pow(10,t);
+		i++;
+		t--;
+	}
+    int number1=((*(s1+8)-48)*10+(*(s1+9)-48));
+    int months=((*(s1+5)-48)*10+(*(s1+6)-48));
+	if(sum%4!=0||sum==1900)
+	{
+			switch(months-1)
+			{
+				case 11:
+					number1+=30;
+				case 10:
+					number1+=31;
+				case 9:
+					number1+=30;
+				case 8:
+					number1+=31;
+				case 7:
+					number1+=31;
+				case 6:
+					number1+=30;
+				case 5:
+					number1+=31;
+				case 4:
+				   	number1+=30;
+				case 3:
+					number1+=31;
+				case 2:
+					number1+=28;
+				case 1:
+					number1+=31;
+                default:
+				    break;		
+		}	
+	}
+	else
+	{
+		switch(months-1)
+		{
+			case 11:
+				number1+=30;
+			case 10:
+				number1+=31;
+			case 9:
+				number1+=30;
+			case 8:
+				number1+=31;
+			case 7:
+				number1+=31;
+			case 6:
+				number1+=30;
+			case 5:
+				number1+=31;
+			case 4:
+			   	number1+=30;
+			case 3:
+				number1+=31;
+			case 2:
+				number1+=29;
+			case 1:
+				number1+=31;
+            default:
+			    break;
+		}
+	}
+	return number1;
+}
