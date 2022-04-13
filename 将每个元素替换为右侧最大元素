@@ -1,0 +1,43 @@
+int* replaceElements(int* arr, int arrSize, int* returnSize)
+{
+	int *s1=(int *)malloc(sizeof(int)*arrSize);
+	if(arrSize==1)
+	{
+		s1[0]=-1;
+		*returnSize=1;
+		return s1;
+	}
+	else
+	{
+		int i=0;
+		int *s2=&arr[arrSize-1];
+		int *s3=&arr[0];
+		int *s4=&arr[1];
+		int max=0;
+		while(s3<s2)
+		{
+			s4=s3+1;
+            max=*(s3+1);
+			while(s4<s2)
+			{
+				max=max<*(s4+1)?*(s4+1):max;
+				s4++;	
+			}
+            max=max<*s4?*s4:max;
+            s1[i++]=max;
+			s3++;
+			if(s3==s2)
+			{
+				max=*s2;
+				s1[i]=max;
+			}
+		}
+		if(s3==s2)
+		{
+			max=-1;
+			s1[arrSize-1]=-1;
+		}
+	}
+	*returnSize=arrSize;
+	return s1;
+}
