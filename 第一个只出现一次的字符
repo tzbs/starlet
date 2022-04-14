@@ -1,0 +1,36 @@
+char firstUniqChar(char* s)
+{
+	int e=strlen(s);
+	if(e==0)
+	{
+		return ' ';
+	}
+	else if(e==1)
+	{
+		return s[0];
+	}
+	else
+	{
+		int i,j;
+		i=0;
+		while(i<e)
+		{
+			j=0;
+			while(s[i]!=s[j]||i==j)
+			{
+				j++;
+				if(j==e)
+				{
+					return s[i];
+				}
+				
+			}
+			i++;
+		}
+		if(i==e)
+		{
+			return ' ';
+		}
+	}
+	return ;
+}
