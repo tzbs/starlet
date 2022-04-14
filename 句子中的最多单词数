@@ -1,0 +1,23 @@
+int mostWordsFound(char ** sentences, int sentencesSize)
+{
+	int i=0;
+	int j=0;
+	int e=0;
+	int max=0;
+	while(i<sentencesSize)
+	{
+		j=0;
+		e=0;
+		while(sentences[i][j]!='\0')
+		{
+			if(sentences[i][j]==' ')
+			{
+				e++;
+			}
+			j++;
+		}
+		max=max<e+1?e+1:max;
+		i++;
+	} 
+	return max;
+}
