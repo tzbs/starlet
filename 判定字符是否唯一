@@ -1,0 +1,42 @@
+bool isUnique(char* astr)
+{
+	int e=strlen(astr);
+	if(e<=1)
+	{
+		return true;
+	} 
+	else
+	{
+	 	int i,j;
+	 	i=0;
+	 	int flag;
+	 	while(i<e)
+	 	{
+	 		j=0;
+	 		flag=0;
+	 		while(j<e)
+	 		{
+	 			if(astr[i]!=astr[j]||i==j)
+	 			{
+	 				j++;
+				}
+				else
+				{
+				 	flag=1;
+				 	break;
+				
+				}
+	 			
+			 }
+			 if(flag==0)
+			 {
+			 	i++;
+			 }
+			 else
+			 {
+			 	return false;
+			 }
+		 }
+		 return true;
+	 }
+}
