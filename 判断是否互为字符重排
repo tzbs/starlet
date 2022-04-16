@@ -1,0 +1,41 @@
+char* InsertSort(char *nums,int n1)
+{
+	int i,j,k;
+	i=1;
+	while(i<n1)
+	{
+		k=nums[i];
+		for(j=i-1;j>=0&&k<nums[j];j--)
+		{
+			nums[j+1]=nums[j];
+		}
+		nums[j+1]=k;
+		i++;
+	}
+	return &nums[0];	
+}
+bool CheckPermutation(char* s1, char* s2)
+{
+	int e1=strlen(s1);
+	int e2=strlen(s2);
+	if(e1!=e2)
+	{
+		return false;
+	}
+	else
+	{
+		s1=InsertSort(s1,e1);
+		s2=InsertSort(s2,e2);
+		int m,n;
+		m=0;
+		n=0;
+		while(m<e1&&n<e2&&s1[m]==s2[n])
+		{
+			m++;
+			n++;
+		}
+		if(m!=e1)
+		return false;
+		return true;	
+	}
+}
