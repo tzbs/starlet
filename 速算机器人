@@ -1,0 +1,30 @@
+int calculate(char* s)
+{
+	int e=strlen(s);
+	if(e==0)
+	{
+		return 1;
+	}
+	else
+	{
+		int i=0;
+		int x=1;
+		int y=0;
+		while(i<e)
+		{
+			switch(s[i])
+			{
+				case 'A':
+					x=2*x+y;
+					break;
+				case 'B':
+					y=2*y+x;
+					break;
+				default :
+					break;	
+			}
+			i++;	
+		}
+		return x+y;	
+	} 
+}
