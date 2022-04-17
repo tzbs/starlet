@@ -1,0 +1,63 @@
+bool arrayStringsAreEqual(char ** word1, int word1Size, char ** word2, int word2Size)
+{
+	int x,y,sum1,sum2;
+	x=0;
+	y=0;
+	sum1=0;
+	sum2=0;
+	while(x<word1Size)
+	{
+		sum1+=strlen(word1[x]);
+		x++;
+	}
+	while(y<word2Size)
+	{
+		sum2+=strlen(word2[y]);
+		y++;
+	}
+	if(sum1!=sum2)
+	{
+		return false;
+	}
+	else
+	{
+		int i,j;
+		i=1;
+		j=1;
+        int c1,c2;
+        c1=0;
+        c2=0;
+		char *s1=(char *)malloc(sizeof(char)*pow(10,4));
+        while(c1<strlen(word1[0]))
+        {
+            s1[c1]=word1[0][c1];
+            c1++;
+        }
+        s1[c1]='\0';
+		char *s2=(char *)malloc(sizeof(char)*pow(10,4));
+        while(c2<strlen(word2[0]))
+        {
+            s2[c2]=word2[0][c2];
+            c2++;
+        }
+        s2[c2]='\0';
+		while(i<word1Size)
+		{
+			s1=strcat(s1,word1[i]);
+			i++;
+		}
+		while(j<word2Size)
+		{
+			s2=strcat(s2,word2[j]);
+			j++;
+		}
+		int m=0;
+		while(m<sum1&&s1[m]==s2[m])
+		{
+			m++;
+		}
+		if(m==sum1)
+		return true;
+		return false;
+	}
+}
