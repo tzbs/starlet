@@ -1,0 +1,32 @@
+int* searchRange(int* nums, int numsSize, int target, int* returnSize)
+{	
+		int i=0;
+		int e=0;
+		int *array1=(int *)malloc(sizeof(int)*2);
+		while(i<numsSize)
+		{
+			if(nums[i]==target)
+			{
+				e++;
+			}
+			i++;
+		}
+		if(e==0)
+		{
+			array1[0]=-1;
+			array1[1]=-1;
+			*returnSize=2;	
+		}
+		else
+		{
+			int ii=0;
+			while(nums[ii]!=target)
+			{
+				ii++;
+			}
+			array1[0]=ii;
+			array1[1]=ii+e-1;
+			*returnSize=2;
+		}
+		return &array1[0];
+}
