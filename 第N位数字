@@ -1,0 +1,39 @@
+int findNthDigit(int n)
+{
+    if(1<=n&&n<=9)
+    {
+        return n;
+    }
+    else
+    {
+        int sum=9;
+        int j=1;
+        int e1=0;
+        while(sum<n)
+        {
+            j++;
+            sum=(j-(1.0/9))*pow(10,j)+1.0/9;
+        }
+        e1=sum-9*pow(10,j-1)*j;
+        int m1=(n-e1)/j;
+        int m2=(n-e1)%j;
+        int g=10*pow(10,j-2)-1;
+        int ren=g+m1;
+        int ii=0;
+        if(m2!=0)
+        {
+            int mm=ren+1;
+            while(ii<(j-m2))
+            {
+               mm/=10;
+                ii++;
+            }
+            return mm%10;
+        }
+        else
+        {
+            int nn=ren;
+            return ren%10;
+        }
+    }
+}
