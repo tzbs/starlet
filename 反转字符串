@@ -1,0 +1,22 @@
+void reverseString(char* s, int sSize)
+{
+	if(sSize==1)
+	{
+		return;
+	}
+	else
+	{
+		char *s1,*s2;
+		char temp;
+		s1=&s[0];
+		s2=&s[sSize-1];	
+        while(s1<s2)
+        {
+            temp=*s1;
+            *s1=*s2;
+            *s2=temp;
+            s1++;
+            s2--;	
+        }
+	} 
+}
