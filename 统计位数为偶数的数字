@@ -1,0 +1,28 @@
+int judge(int a)
+{
+	int i=1;
+	while(a>9)
+	{
+		if(a/10>0)
+		{
+			a=a/10;
+			i++;
+		}	
+	}
+	return i;
+}
+int findNumbers(int* nums, int numsSize)
+{
+	int counte=0;
+	int i=0;
+	int m=0;
+	int n=0;
+	while(i<numsSize)
+	{
+		m=judge(nums[i]);
+		if(m%2==0)
+		n++;
+		i++;
+	}
+	return n;
+}
