@@ -1,0 +1,31 @@
+int minOperations(int* nums, int numsSize)
+{
+	if(numsSize==1)
+	{
+		return 0;
+	}
+	else
+	{
+		int i=0;
+		int j=1;
+		int counter=0;
+		while(1)
+		{
+			while(j<numsSize&&nums[j]-nums[i]>=1)
+			{
+				j++;
+				i++;	
+			}
+			if(j<numsSize)
+			{
+				nums[j]=nums[j]+1;
+				counter++;
+			}
+			else
+			{
+				break;
+			}
+		}
+		return counter;	
+	}
+}
