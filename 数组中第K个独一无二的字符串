@@ -1,0 +1,24 @@
+char * kthDistinct(char ** arr, int arrSize, int k)
+{
+	int i=0;
+	int j=0;
+	int counter=0;
+	while(i<arrSize)
+	{
+		j=0;
+		while(j<arrSize&&(i==j||(strcmp(arr[i],arr[j])!=0)))
+		{
+			j++;
+		}
+		if(j==arrSize)
+		{
+			counter++;
+		}
+		if(counter==k)
+		{
+			return arr[i];
+		}
+		i++;
+	}
+	return "";
+}
