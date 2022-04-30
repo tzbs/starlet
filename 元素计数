@@ -1,0 +1,28 @@
+int countElements(int* nums, int numsSize)
+{
+	int i=0;
+	int j=0;
+	int k=0;
+	int counter=0;
+	while(i<numsSize)
+	{
+		j=0;
+		k=0;
+		while(j<numsSize)
+		{
+			if(nums[i]>nums[j])
+			break;
+			j++;
+		}
+		while(k<numsSize)
+		{
+			if(nums[k]>nums[i])
+			break;
+			k++;
+		}
+		if(j!=numsSize&&k!=numsSize)
+		counter++;
+		i++;
+	}
+	return counter;
+}
