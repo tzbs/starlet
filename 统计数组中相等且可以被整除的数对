@@ -1,0 +1,20 @@
+int countPairs(int* nums, int numsSize, int k)
+{
+	int i=0;
+	int j=0;
+	int counter=0;
+	while(i<numsSize)
+	{
+		j=0;
+		while(j<numsSize)
+		{
+			if(nums[i]==nums[j]&&(i*j)%k==0&&i<j)
+			{
+				counter++;
+			}
+			j++;
+		}
+		i++;
+	}
+	return counter;
+}
