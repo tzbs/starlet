@@ -1,0 +1,76 @@
+int resarch1(int *nums,int numsSize,int target)
+{
+	int i=0;
+	while(i<numsSize)
+	{
+		if(nums[i]==target)
+		{
+			return 1;
+		}
+		i++;
+	}
+	return 0;
+}
+int *InsertSort(int *nums,int numsSize)
+{
+	int a,b,c;
+	a=1;
+	while(a<numsSize)
+	{
+		b=nums[a];
+		for(c=a-1;c>=0&&b<nums[c];c--)
+		{
+			nums[c+1]=nums[c];
+		}
+		nums[c+1]=b;
+		a++;
+	}
+	return &nums[0];
+}
+int * intersection(int** nums, int numsSize, int* numsColSize, int* returnSize)
+{
+	int i=0;
+	int j=0;
+	int k,m,n;
+	k=0;
+	m=0;
+	n=0;
+	int min=numsColSize[0];
+	while(i<numsSize)
+	{
+		min=min<numsColSize[i]?min:numsColSize[i];
+		i++;
+	}
+	while(j<numsSize)
+	{
+		if(min==numsColSize[j])
+		break;
+		j++;
+	}
+    int *s1=(int *)malloc(sizeof(int)*min);
+	while(k<numsColSize[j])
+	{
+		m=0;
+		while(m<numsSize)
+		{
+			if(resarch1(nums[m],numsColSize[m],nums[j][k]))
+			{
+				m++;
+			}
+			else
+			{
+				k++;
+				break;
+			}
+		}
+		if(n<min&&m==numsSize)
+		{
+			s1[n]=nums[j][k];
+			n++;
+            k++;
+		}
+	}
+	s1=InsertSort(s1,n);
+	*returnSize=n;
+	return s1;
+}
