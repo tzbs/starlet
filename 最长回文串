@@ -1,0 +1,90 @@
+int search1(char *nums1,int nums1Size,char m)
+{
+	nums1Size=strlen(nums1);
+	int counter=0;
+	int i=0;
+	while(i<nums1Size)
+	{
+		if(m==nums1[i])
+		counter++;
+		i++;
+	}
+	return counter;
+}
+void PercDown(char *array,int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ char * HeapSort(char *array,int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+int longestPalindrome(char * s)
+{
+     s=HeapSort(s,strlen(s));
+    int sum1=0;
+    int sum2=0;
+    int tt=0;
+    int i=0;
+    while(i<strlen(s))
+    {
+        if(search1(s,strlen(s),s[i])%2==0)
+        {
+            sum1+=search1(s,strlen(s),s[i]);
+        }
+        i++;
+        while(i<strlen(s)&&s[i]==s[i-1])
+        {
+            i++;
+        }
+    }
+    i=0;
+    while(i<strlen(s))
+    {
+        if(search1(s,strlen(s),s[i])%2==1)
+        {
+            sum2+=search1(s,strlen(s),s[i]);
+            tt++;
+        }
+        i++;
+        while(i<strlen(s)&&s[i]==s[i-1])
+        {
+            i++;
+        }
+    }
+    if(sum2==0)
+    return sum1;
+    return sum1+sum2-tt+1;
+}
