@@ -1,0 +1,21 @@
+char ** findWords(char ** words, int wordsSize, int* returnSize)
+{
+	char **nums1=(char **)malloc(sizeof(char *)*wordsSize);
+	int i=0;
+    int j=0;
+	while(i<wordsSize&&j<wordsSize)
+	{
+		if((strspn(words[i],"qwertyuiopQWERTYUIOP")==strlen(words[i]))||(strspn((words[i]),"asdfghjklASDFGHJKL")==strlen(words[i]))||(strspn((words[i]),"zxcvbnmZXCVBNM")==strlen(words[i])))
+		{
+			nums1[j]=words[i];
+			i++;
+            j++;	
+		}
+		else 
+		{
+			i++;
+		}
+	}
+	*returnSize=j;
+	return nums1;
+}
