@@ -1,0 +1,50 @@
+int maxNumberOfBalloons(char * text)
+{
+	int e1,e2,e3,e4,e5;
+	e1=0;
+	e2=0;
+	e3=0;
+	e4=0;
+	e5=0;
+	int i=0;
+	int e=strlen(text);
+	while(i<e)
+	{
+		if(text[i]=='b')
+		{
+			e1++;
+		}
+		else if(text[i]=='a')
+		{
+			e2++;
+		}
+		else if(text[i]=='l')
+		{
+			e3++;
+		}
+		else if(text[i]=='o')
+		{
+			e4++;
+		}
+		else if(text[i]=='n')
+		{
+			e5++;
+		}
+		i++;
+	}
+	if(e1==0||e2==0||e3<=1||e4<=1||e5==0)
+	{
+		return 0;
+	}
+	else if(((e2<e5?e2:e5)==e5?(e1<e5?e1:e5):(e1<e2?e1:e2))>=(e3<e4?e3:e4))
+    {
+        return (e3<e4?e3:e4)/2;
+    }
+    else if(((e2<e5?e2:e5)==e5?(e1<e5?e1:e5):(e1<e2?e1:e2))<=(e3<e4?e3:e4)/2)
+    {
+        return ((e2<e5?e2:e5)==e5?(e1<e5?e1:e5):(e1<e2?e1:e2));
+    }
+    else 
+    return (e3<e4?e3:e4)/2;
+	
+}
