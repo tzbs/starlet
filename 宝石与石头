@@ -1,0 +1,13 @@
+int numJewelsInStones(char * jewels, char * stones)
+{
+	int counter=0;
+	int e=strlen(stones);
+    int i=e-1;
+	while(i>=0)
+	{
+		if(strspn((stones+i),jewels))
+		counter++;
+		i--;
+	}
+	return counter;
+}
