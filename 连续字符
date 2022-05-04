@@ -1,0 +1,19 @@
+int maxPower(char * s)
+{
+    int e=strlen(s);
+	int max=0;
+	int i=0;
+	int counter=1;
+	while(i<e)
+	{
+        counter=1;
+		while(i+1<e&&s[i]==s[i+1])
+		{
+			counter++;
+			i++;
+		}
+		max=max<counter?counter:max;
+		i++;
+	}
+	return max;
+}
