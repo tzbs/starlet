@@ -1,0 +1,226 @@
+int countPoints(char * rings)
+{
+	int i=1;
+	int temp=0;
+	int a0,a1,a2,s0,s1,s2,d0,d1,d2,f0,f1,f2,g0,g1,g2,h0,h1,h2,j0,j1,j2,k0,k1,k2,l0,l1,l2,m0,m1,m2;
+	a0=0;
+	a1=0;
+	a2=0;
+	s0=0;
+	s1=0;
+	s2=0;
+	d0=0;
+	d1=0;
+	d2=0;
+	f0=0;
+	f1=0;
+	f2=0;
+	g0=0;
+	g1=0;
+	g2=0;
+	h0=0;
+	h1=0;
+	h2=0;
+	j0=0;
+	j1=0;
+	j2=0;
+	k0=0;
+	k1=0;
+	k2=0;
+	l0=0;
+	l1=0;
+	l2=0;
+	m0=0;
+	m1=0;
+	m2=0;
+	while(i<strlen(rings))
+	{
+		temp=rings[i];		
+		switch(temp)
+		{
+			case '0':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							a0++;
+							break;
+						case 'G':
+							a1++;
+							break;
+						case 'B':
+							a2++;
+							break;
+					}
+					break;
+				}
+			case '1':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							s0++;
+							break;
+						case 'G':
+							s1++;
+							break;
+						case 'B':
+							s2++;
+							break;
+					}
+					break;
+				}
+			case '2':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							d0++;
+							break;
+						case 'G':
+							d1++;
+							break;
+						case 'B':
+							d2++;
+							break;
+					}
+					break;
+				}
+			case '3':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							f0++;
+							break;
+						case 'G':
+							f1++;
+							break;
+						case 'B':
+							f2++;
+							break;
+					}
+					break;
+				}
+			case '4':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							g0++;
+							break;
+						case 'G':
+							g1++;
+							break;
+						case 'B':
+							g2++;
+							break;
+					}
+					break;
+				}
+			case '5':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							h0++;
+							break;
+						case 'G':
+							h1++;
+							break;
+						case 'B':
+							h2++;
+							break;
+					}
+					break;
+				}
+			case '6':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							j0++;
+							break;
+						case 'G':
+							j1++;
+							break;
+						case 'B':
+							j2++;
+							break;
+					}
+					break;
+				}
+			case '7':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							k0++;
+							break;
+						case 'G':
+							k1++;
+							break;
+						case 'B':
+							k2++;
+							break;
+					}
+					break;
+				}
+			case '8':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							l0++;
+							break;
+						case 'G':
+							l1++;
+							break;
+						case 'B':
+							l2++;
+							break;
+					}
+					break;
+				}
+			case '9':
+				{
+					switch(rings[i-1])
+					{
+						case 'R':
+							m0++;
+							break;
+						case 'G':
+							m1++;
+							break;
+						case 'B':
+							m2++;
+							break;
+					}
+					break;
+				}		
+		}
+		i+=2;
+	}
+	int counter=0;
+	if(a0>0&&a1>0&&a2>0)
+	counter++;
+	if(s0>0&&s1>0&&s2>0)
+	counter++;
+	if(d0>0&&d1>0&&d2>0)
+	counter++;
+	if(f0>0&&f1>0&&f2>0)
+	counter++;
+	if(g0>0&&g1>0&&g2>0)
+	counter++;
+	if(h0>0&&h1>0&&h2>0)
+	counter++;
+	if(j0>0&&j1>0&&j2>0)
+	counter++;
+	if(k0>0&&k1>0&&k2>0)
+	counter++;
+	if(l0>0&&l1>0&&l2>0)
+	counter++;
+	if(m0>0&&m1>0&&m2>0)
+	counter++;
+	return counter;
+}
