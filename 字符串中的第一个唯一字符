@@ -1,0 +1,21 @@
+int firstUniqChar(char * s)
+{
+	int e=strlen(s);
+	int i=0;
+	int j=0;
+	int tag;
+	while(i<e)
+	{
+		j=0;
+		while(j<e&&(s[i]!=s[j]||i==j))
+		{
+			j++;
+		}
+		if(j==e)
+		{
+			return i;
+		}
+		i++;
+	}
+	return -1;
+}
