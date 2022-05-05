@@ -1,0 +1,58 @@
+int makeEqual(char ** words, int wordsSize)
+{
+    int i;
+    int sum1=0;
+    int array1[26]={0};
+    int j=0;
+    int m=0;
+    while(i<wordsSize)
+    {
+        sum1+=strlen(words[i]);
+        i++;
+    }
+    if(sum1%wordsSize!=0)
+    {
+        return false;
+    }
+    else
+    {
+        while(j<wordsSize)
+        {
+            m=0;
+            while(m<strlen(words[j]))
+            {
+                array1[words[j][m]-97]++;
+                m++;
+            }
+            j++;
+        }
+        int n=0;
+        int nn=0;
+        while(n<26)
+        {
+        	if(array1[n]!=0)
+            nn++;
+            n++;
+        }
+        int *s2=(int *)malloc(sizeof(int)*nn);
+        n=0;
+        int u=0;
+        while(n<26)
+        {
+        	if(array1[n]!=0)
+        	{
+        		s2[u]=array1[n];
+        		u++;
+			}
+			n++;
+		}
+        int k=0;
+        while(k<nn)
+        {
+            if(s2[k]%wordsSize!=0)
+            return false;
+            k++;
+        }
+        return true;
+    }
+}
