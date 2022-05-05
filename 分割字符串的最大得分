@@ -1,0 +1,32 @@
+int maxScore(char * s)
+{
+	int counter1=0;
+	int counter2=0;
+	int e=strlen(s);
+	int i=1;
+	int j=0;
+	int k=0;
+	int max=0;
+	while(i<e)
+	{
+		j=0;
+    counter1=0;
+    counter2=0;
+		while(j<i)
+		{
+			if(s[j]=='0')
+			counter1++;
+			j++;
+		}
+		k=i;
+		while(k<e)
+		{
+			if(s[k]=='1')
+			counter2++;
+			k++;
+		}
+		max=max<counter1+counter2?counter1+counter2:max;
+		i++;
+	}
+	return max;
+}
