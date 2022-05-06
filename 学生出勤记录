@@ -1,0 +1,33 @@
+bool checkRecord(char * s)
+{
+	int e=strlen(s);
+	int i=0;
+	int counter1=0;
+	while(i<e)
+	{
+		if(s[i]=='A')
+		counter1++;
+		i++;
+	}
+	if(counter>=2)
+	{
+		return false;
+	}
+	else if(e<=2)
+	{
+		return true;
+	}
+	else if(e>2)
+	{
+		int m=1;
+		while(m<e-1)
+		{
+			if(s[m-1]=='L'&&s[m]=='L'&&s[m+1]=='L')
+			{
+				return false;
+			}
+			m++;
+		}
+		return true;
+	}
+}
