@@ -1,0 +1,14 @@
+int titleToNumber(char * columnTitle)
+{
+	int e=strlen(columnTitle);
+	int sum=0;
+	int i=0;
+	int j=1;
+	while(i<e&&j<=e)
+	{
+		sum+=(columnTitle[i]-'A'+1)*pow(26,e-j);
+		j++;
+		i++;
+	}
+	return sum;
+}
