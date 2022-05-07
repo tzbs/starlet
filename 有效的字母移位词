@@ -1,0 +1,35 @@
+bool isAnagram(char * s, char * t)
+{
+    int e1=strlen(s);
+	int e2=strlen(t);
+    if(e1!=e2)
+    {
+        return false;
+    }
+    else
+    {
+        int s1[26]={0};
+        int s2[26]={0};
+        int i;
+        i=0;
+        while(i<e1)
+        {
+            s1[s[i]-'a']++;
+            i++;
+        }
+        i=0;
+        while(i<e2)
+        {
+            s2[t[i]-'a']++;
+            i++;
+        }
+        i=0;
+        while(i<26)
+        {
+            if(s1[i]!=s2[i])
+            return false;
+            i++;
+        }
+        return true;
+    }
+}
