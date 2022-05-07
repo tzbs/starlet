@@ -1,0 +1,32 @@
+bool judgeCircle(char * moves)
+{
+	int e=strlen(moves);
+	int i=0;
+	int counter1=0;
+	int counter2=0;
+	int counter3=0;
+	int counter4=0;
+	while(i<e)
+	{
+		if(moves[i]=='U')
+		{
+			counter1++;
+		}
+		else if(moves[i]=='D')
+		{
+			counter2++;
+		}
+		else if(moves[i]=='L')
+		{
+			counter3++;
+		}
+		else if(moves[i]=='R')
+		{
+			counter4++;
+		}
+		i++;
+	}
+	if(counter1==counter2&&counter3==counter4)
+	return true;
+	return false;
+}
