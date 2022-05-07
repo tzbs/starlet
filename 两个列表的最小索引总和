@@ -1,0 +1,49 @@
+char ** findRestaurant(char ** list1, int list1Size, char ** list2, int list2Size, int* returnSize)
+{
+	int e=list1Size<list2Size?list2Size:list1Size;
+	char **s1=(char **)malloc(sizeof(char*)*e);
+	char **s3=(char **)malloc(sizeof(char*)*e);
+	int *s2=(int *)malloc(sizeof(int)*e);
+	int i=0;
+	int j=0;
+	int m=0;
+	int n=0;
+	while(i<list1Size)
+	{
+		j=0;
+		while(j<list2Size)
+		{
+			if(!strcmp(list1[i],list2[j]))
+			{
+				s1[m]=list1[i];
+				s2[n]=i+j;
+				m++;
+				n++;
+				break;
+			}
+			j++;
+		}
+		i++;
+	}
+	int t=0;
+	int min=s2[0];
+	while(t<n)
+	{
+		min=min<s2[t]?min:s2[t];
+		t++;
+	}
+	t=0;
+    int tt=0;
+	while(t<n)
+	{
+		if(min==s2[t])
+		{
+            s3[tt]=strdup(s1[t]);
+			//strcpy(s3[tt],s1[t]);
+            tt++;			
+		}
+		t++;
+	}
+	*returnSize=tt;
+	return s3;
+}
