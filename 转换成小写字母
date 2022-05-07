@@ -1,0 +1,15 @@
+char * toLowerCase(char * s)
+{
+	int e=strlen(s);
+	int i=0;
+	while(i<e)
+	{
+		if(s[i]>='A'&&s[i]<='Z')
+		{
+			s[i]=s[i]+32;
+		}
+		i++;
+	}
+	return s;
+
+}
