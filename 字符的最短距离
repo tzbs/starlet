@@ -1,0 +1,33 @@
+int minfunction(int m,int *num1,int num1Size)
+{
+	int i=0;
+	int min=abs(m-num1[i]);
+	while(i<num1Size)
+	{
+		min=min<abs(m-num1[i])?min:abs(m-num1[i]);
+		i++;
+	}
+	return min;
+}
+int* shortestToChar(char * s, char c, int* returnSize)
+{
+	int e=strlen(s);
+	int *s1=(int *)malloc(sizeof(int)*e);
+	int *s2=(int *)malloc(sizeof(int)*e);
+	int i=0;
+	int j=0;
+	while(i<e)
+	{
+		if(s[i]==c)
+		s1[j++]=i;
+		i++;
+	}
+	i=0;
+	while(i<e)
+	{
+		s2[i]=minfunction(i,s1,j);
+		i++;	
+	}
+	*returnSize=e;
+	return s2;
+}
