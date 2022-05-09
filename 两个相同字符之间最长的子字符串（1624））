@@ -1,0 +1,22 @@
+int maxLengthBetweenEqualCharacters(char * s)
+{
+	int e=strlen(s);
+	int i=0;
+	int j=e-1;
+	int max=-1;
+	int counter=0;
+	while(i<e)
+	{
+		j=e-1;
+		while(j>i)
+		{
+			if(s[i]==s[j])
+			{
+				max=max<j-i-1?j-i-1:max;		
+			}
+			j--;
+		}
+		i++;
+	}
+	return max;
+}
