@@ -1,0 +1,100 @@
+char *strrev1(char *s)
+{
+    int e=strlen(s);
+    int i=0;
+    int j=e-1;
+    char temp;
+    while(i<j)
+    {
+        temp=s[i];
+        s[i]=s[j];
+        s[j]=temp;
+        i++;
+        j--;
+    }
+    return s;
+}
+char *add(char *a,char *b)
+{
+	int tmp=0;
+	
+    int j=0;
+	int e=strlen(a);
+	int i=e-1;
+
+	char *s1=(char *)malloc(sizeof(char)*(e+2));
+	s1[e+1]='\0';
+	s1[e]='\0';
+	while(i>=0)
+	{
+		if(a[i]-'0'+b[i]-'0'+tmp>1)
+		{
+         
+			s1[j]=(a[i]-'0'+b[i]-'0'+tmp)%2+'0';
+            j++;
+			tmp=1;
+			i--;
+		}
+		else if(a[i]-'0'+b[i]-'0'+tmp<=1)
+		{
+         
+			s1[j]=(a[i]-'0'+b[i]-'0'+tmp)%2+'0';
+            j++;
+			tmp=0;
+			i--;
+		}
+        
+	}
+    if(tmp==1)
+    s1[j]='1';
+    return s1;	
+}
+char * addBinary(char * a, char * b)
+{
+	int e1=strlen(a);
+	int e2=strlen(b);
+	int max=e1<e2?e2:e1;
+	char *s2=(char *)malloc(sizeof(char)*(max+1));
+	if(e1<e2)
+	{
+		int i=max-1;
+		int j=1;
+		while(i>=max-e1&&j<=e1)
+		{
+			s2[i]=a[e1-j];
+			j++;
+			i--;	
+		}
+		int m=0;
+		while(m<max-e1)
+		{
+			s2[m]='0';
+			m++;
+		}
+		s2[max]='\0';
+		return strrev1(add(s2,b));
+	}
+	else if(e1>e2)
+	{
+		int i=max-1;
+		int j=1;
+		while(i>=max-e2&&j<=e2)
+		{
+			s2[i]=b[e2-j];
+			j++;
+			i--;	
+		}
+		int m=0;
+		while(m<max-e2)
+		{
+			s2[m]='0';
+			m++;
+		}
+		s2[max]='\0';
+		return strrev1(add(s2,a));	
+	}
+	else 
+	{
+		return strrev1(add(a,b));
+	}
+}
