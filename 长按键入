@@ -1,0 +1,45 @@
+bool isLongPressedName(char * name, char * typed)
+{
+	int e1=strlen(name);
+	int e2=strlen(typed);
+    if(e1>e2)
+    return false;
+    int i=0;
+	int j=0;
+	int counter1=1;
+	int counter2=1;
+	while(i<e1&&j<e2)
+	{
+		counter1=1;
+		counter2=1;
+		while(i+1<e1&&name[i]==name[i+1])
+		{
+			counter1++;
+			i++;
+		}
+		while(j+1<e2&&typed[j]==typed[j+1])
+		{
+			counter2++;
+			j++;
+		}
+		if(counter1>counter2||name[i]!=typed[j])
+		{
+			return false;
+		}
+		i++;
+		j++;
+	}
+    while(j<e2)
+    {
+        if(typed[j-1]!=typed[j])
+        return false;
+        j++;
+    }
+    if(i<e1&&j==e2)
+    return false;
+    if(name[e1-1]!=typed[e2-1])
+    {
+        return false;
+    }
+	return true;
+}
