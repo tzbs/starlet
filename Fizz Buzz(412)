@@ -1,0 +1,86 @@
+char ** fizzBuzz(int n, int* returnSize)
+{
+	char **s1=(char **)malloc(sizeof(char *)*n);
+    int f=0;
+    while(f<n)
+    {
+        s1[f]=(char *)malloc(sizeof(char)*9);
+        f++;
+    }
+    
+	int i=1;
+	int j=0;
+    int m=0;
+    char *s2;
+	while(i<=n&&j<n)
+	{
+		if(i%3==0&&i%5==0)
+		{
+            m=0;
+            s2="FizzBuzz";
+            while(m<8)
+            {
+                s1[j][m]=s2[m];
+                m++;
+            }
+            s1[j][m]='\0';
+            j++;
+			
+		}
+		else if(i%3==0&&i%5!=0)
+		{
+            m=0;
+            s2="Fizz";
+            while(m<4)
+            {
+                s1[j][m]=s2[m];
+                m++;
+            }
+            s1[j][m]='\0';
+            j++;
+		}
+		else if(i%5==0&&i%3!=0)
+		{
+            m=0;
+            s2="Buzz";
+            while(m<4)
+            {
+                s1[j][m]=s2[m];
+                m++;
+            }
+            s1[j][m]='\0';
+            j++;	
+		}
+		else if(i%3!=0&&i%5!=0)
+		{
+			
+            int mm=0;
+            int ii=i;
+            int counter33=1;
+            while(i)
+            {
+                if(i/10!=0)
+                {
+                    counter33++;
+                    i/=10;
+                }
+                else
+                break;
+            }
+            m=counter33-1;
+            i=ii;
+            while(m>=0)
+            {
+                s1[j][m]=i%10+'0';
+                i/=10;
+                m--;
+            }
+            s1[j][counter33]='\0';	
+            j++;
+            i=ii;
+		}
+		i++;
+	}
+	*returnSize=j;
+	return s1;
+}
