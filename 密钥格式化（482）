@@ -1,0 +1,95 @@
+char * licenseKeyFormatting(char * s, int k)
+{
+	int e=strlen(s);
+    int ii=0;
+    int counter=0;
+    while(ii<e)
+    {
+        if(s[ii]!='-')
+        counter++;
+        ii++;
+    }
+    if(counter==0)
+    return "";
+	int i=0;
+	while(i<e)
+	{
+		if(s[i]>='a'&&s[i]<='z')
+		{
+			s[i]=s[i]-32;
+		}
+		i++;
+	}
+	int m1=counter/k;
+	int m2=counter%k;
+	int m3=0;
+	int m4=0;
+    int u=0;
+	if(m2==0)
+	{
+		char *s1=(char *)malloc(sizeof(char)*3*e);
+		while(m3<e)
+		{
+			if(s[m3]!='-')
+			{
+				s1[m4++]=s[m3];
+                u++;
+				if(u%k==0&&m3<e-1)
+				{
+                    s1[m4++]='-';
+                    u=0;
+
+                }
+			}
+			m3++;
+		}
+		s1[m4]='\0';
+        if(s1[m4-1]=='-')
+        s1[m4-1]='\0';
+		return s1;
+	}
+	else 
+	{
+		char *s1=(char *)malloc(sizeof(char)*3*e);
+		while(m3<e&&m4<m2)
+		{
+			if(s[m3]!='-')
+			{
+				s1[m4++]=s[m3];
+			}
+			m3++;
+		}
+		if(m3<e&&m4==m2)
+		{
+			s1[m4++]='-';
+            
+			while(m3<e)
+			{
+				if(s[m3]!='-')
+				{
+					s1[m4++]=s[m3];
+                    u++;
+					if(u%k==0&&m3<e-1)
+					{
+                        s1[m4++]='-';
+                        u=0;
+
+                    }
+				}
+				m3++;
+			}
+			s1[m4]='\0';
+            if(s1[m4-1]=='-')
+            s1[m4-1]='\0';
+			return s1;
+		}
+		else
+		{
+			s1[m4]='\0';
+            if(s1[m4-1]=='-')
+            s1[m4-1]='\0';
+			return s1;
+		}
+	}
+    return NULL;	
+}
