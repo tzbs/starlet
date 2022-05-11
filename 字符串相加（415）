@@ -1,0 +1,82 @@
+char * add(char *num1,char *num2)
+{
+    int e=strlen(num2);
+	char *s1=(char *)malloc(sizeof(char)*(e+2));
+	s1[e+1]='\0';
+	s1[0]='0';
+	int tmp=0;
+	int i=e-1;
+	int j=e;
+	while(i>=0)
+	{
+		s1[j]=(num1[i]-'0'+num2[i]-'0'+tmp)%10+'0';
+		if(num1[i]-'0'+num2[i]-'0'+tmp>9)
+		{
+			tmp=(num1[i]-'0'+num2[i]-'0'+tmp)/10;
+		}
+        else
+        {
+            tmp=0;
+        }
+		i--;
+		j--;
+        if(i<0&&tmp!=0)
+        s1[j]=tmp+'0';
+	}
+	if(s1[0]!='0')
+	{
+		return s1;
+	}
+	else
+	{
+		char *s2=&s1[1];
+		return s2;
+	}
+}
+char * addStrings(char * num1, char * num2)
+{
+	int e1= strlen(num1);
+	int e2=strlen(num2);
+	if(e1!=e2)
+	{
+		if(e1<e2)
+		{
+			char *s1=(char *)malloc(sizeof(char)*(e2+1));
+			s1[e2]='\0';
+			int j=1;
+			while(e1-j>=0)
+			{
+				s1[e2-j]=num1[e1-j];
+				j++;
+			}
+			while(e2-j>=0)
+			{
+				s1[e2-j]='0';
+				j++;
+			}
+			return add(s1,num2);
+		}
+		else if(e1>e2)
+		{
+			char *s1=(char *)malloc(sizeof(char)*(e1+1));
+			s1[e1]='\0';
+			int j=1;
+			while(e2-j>=0)
+			{
+				s1[e1-j]=num2[e2-j];
+				j++;
+			}
+			while(e1-j>=0)
+			{
+				s1[e1-j]='0';
+				j++;
+			}
+			return add(s1,num1);
+		}
+	}
+    else
+    {
+        return add(num1,num2);
+    }
+	return NULL;
+}
