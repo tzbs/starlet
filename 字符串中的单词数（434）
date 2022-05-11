@@ -1,0 +1,59 @@
+int countSegments(char * s)
+{
+	int e=strlen(s);
+	if(e==0)
+	{
+		return 0;
+	}
+	else if(s[0]==' ')
+	{
+		int i=0;
+		int counter=0;
+		while(i<e)
+		{
+			while(i<e&&s[i]==' ')
+			{
+				i++;
+			}
+			if(i<e)
+			{
+				while(i<e&&s[i]!=' ')
+				{
+					i++;
+				}
+				counter++;
+			}
+			else
+			{
+				return counter;
+			}
+		}
+		return counter;
+	}
+	else if(s[0]!=' ')
+	{
+		int i=0;
+		int counter=0;
+		while(i<e)
+		{
+			while(i<e&&s[i]!=' ')
+			{
+				i++;
+			}
+			counter++;
+			if(i<e)
+			{
+				while(i<e&&s[i]==' ')
+				{
+					i++;
+				}
+			}
+			else
+			{
+				return counter;
+			}
+		}
+		return counter;
+	}
+    return 0;
+}
