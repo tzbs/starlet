@@ -1,0 +1,86 @@
+char * reverseStr(char * s, int k)
+{
+	int e=strlen(s);
+	if(e<=k)
+	{
+		int i=0;
+		int j=e-1;
+		char tmp;
+		while(i<j)
+		{
+			tmp=s[i];
+			s[i]=s[j];
+			s[j]=tmp;
+			i++;
+			j--;
+		}
+	}
+	else if(e>k&&e<=(2*k))
+	{
+		int i=0;
+		int j=k-1;
+        char tmp;
+		while(i<j)
+		{
+			tmp=s[i];
+			s[i]=s[j];
+			s[j]=tmp;
+			i++;
+			j--;	
+		} 
+	}
+	else
+	{
+		int m1=e%(2*k);
+		int m2=e/(2*k);
+		int te=0;
+		int i=0;
+		int j=i+k-1;
+        char tmp;
+		while(te<m2)
+		{
+			while(i<j)
+			{
+				tmp=s[i];
+				s[i]=s[j];
+				s[j]=tmp;
+				i++;
+				j--;
+			}
+			te++;
+			i=te*k*2;
+			j=i+k-1;
+		}
+		if(m1==0)
+		{
+			return s;
+		}
+		else if(m1>0&&m1<k)
+		{
+			i=e-m1;
+			j=e-1;
+			while(i<j)
+			{
+				tmp=s[i];
+				s[i]=s[j];
+				s[j]=tmp;
+				i++;
+				j--;
+			}	
+		}
+		else
+		{
+			i=e-m1;
+			j=i+k-1;
+			while(i<j)
+			{
+				tmp=s[i];
+				s[i]=s[j];
+				s[j]=tmp;
+				i++;
+				j--;
+			}
+		}	
+	}
+	return s;
+}
