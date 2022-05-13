@@ -1,0 +1,73 @@
+char * reformat(char * s)
+{
+	int e1=strlen(s);
+
+	char *s1=(char *)malloc(sizeof(char)*(e1+1));
+	char *s2=(char *)malloc(sizeof(char)*(e1+1));
+	int i=0;
+	int j=0;
+	int k=0;
+	
+	while(i<e1)
+	{
+		if(s[i]>='a'&&s[i]<='z')
+		{
+			s1[j++]=s[i];
+		}
+		else 
+		{
+			s2[k++]=s[i];
+		}
+		i++;
+	}
+	s1[j]='\0';
+	s2[k]='\0';
+	if(j!=k&&j+1!=k&&k+1!=j)
+	{
+		return "";
+	}
+	else
+	{
+		int counter1=1;
+		int counter2=0;
+		char *s3=(char *)malloc(sizeof(char)*(e1+1));
+		s3[e1]='\0';
+		int u=0;
+		if(j<=k)
+		{
+			while(u<j)
+			{
+				s3[counter1]=s1[u];
+                counter1+=2;			
+				u++;
+			}
+			u=0;
+			while(u<k)
+			{
+				s3[counter2]=s2[u];
+				counter2+=2;
+				u++;
+			}
+		}
+		else
+		{
+			u=0;
+			counter1=1;
+		    counter2=0;
+			while(u<k)
+			{
+				s3[counter1]=s2[u];
+				counter1+=2;
+				u++;
+			}
+			u=0;
+			while(u<j)
+			{
+				s3[counter2]=s1[u];
+				counter2+=2;
+				u++;
+			}
+		}
+		return s3;
+	}
+}
