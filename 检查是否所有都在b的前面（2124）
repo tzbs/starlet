@@ -1,0 +1,26 @@
+bool checkString(char * s)
+{
+	int e=strlen(s);
+	int i=e-1;
+	while(i>=0)
+	{
+		if(s[i]=='a')
+		break;
+		i--;
+	}
+	if(i<=0)
+	{
+		return true;
+	}
+	else
+	{
+		int m=0;
+		while(m<i)
+		{
+			if(s[m]=='b')
+			return false;
+			m++;
+		}
+		return true;
+	}
+}
