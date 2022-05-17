@@ -1,0 +1,84 @@
+int canBeTypedWords(char * text, char * brokenLetters)
+{
+	int e0=strlen(text);
+	int e1=strlen(brokenLetters);
+	int i=0;
+	int counter=1;
+	while(i<e0)
+	{
+		if(text[i]==' ')
+		{
+			counter++;
+			//num[kk++]=i;
+		}
+		i++;
+	}  //counter表示单词数
+	int ii=0;
+	int *num=(int *)malloc(sizeof(int)*(e0+1));
+	while(ii<e0+1)
+	{
+		num[ii]=-1;
+		ii++;
+	} //数组用于存储每个单词长度
+	ii=0;
+	i=0;
+	int counter1=0;
+	while(i<e0)
+	{
+		counter1=0;
+		while(i<e0&&text[i]!=' ')
+		{
+			counter1++;
+			i++;
+		}
+		num[ii++]=counter1;
+		i++;
+	}//每个单词长度
+	if(e1==0)
+	{
+		return counter;
+	}
+	else
+	{
+		int a=0;
+		int b=0;
+		int counter2=0;
+		while(a<e0)
+		{
+			b=0;
+			while(b<e1)
+			{
+				if(text[a]!=brokenLetters[b])
+				{
+					b++;
+				}
+				else
+				break;
+			}
+			if(b==e1)
+			{
+                if((a+1<e0&&text[a+1]==' ')||a==e0-1)
+                {
+                    counter2++;
+                }
+				a++;
+			}
+			else
+			{
+				while(a<e0&&text[a]!=' ')
+				{
+					a++;
+				}
+				if(a==e0)
+				{
+					return counter2;
+				}
+				else
+				{
+					a++;
+				}
+			}
+		}
+		return counter2;
+	}
+}
