@@ -1,0 +1,83 @@
+int countWords(char ** words1, int words1Size, char ** words2, int words2Size)
+{
+	int i=0;
+	int j=0;
+	char **s1=(char **)malloc(sizeof(char *)*words1Size);
+	int u=0;
+	while(i<words1Size)
+	{
+		j=0;
+		while(j<words1Size)
+		{
+			if(strcmp(words1[i],words1[j])==0&&i!=j)
+			{
+				break;
+			}
+			j++;
+		}	
+		if(j==words1Size)
+		{
+			s1[u++]=&words1[i][0];
+		}
+		i++;
+	}
+	while(u<words1Size)
+	{
+		s1[u++]=NULL;
+	}
+    int m=0;
+    int n=0;
+    char **s2=(char **)malloc(sizeof(char *)*words2Size);
+    int v=0;
+    while(m<words2Size)
+    {
+        n=0;
+        while(n<words2Size)
+        {
+            if(strcmp(words2[m],words2[n])==0&&m!=n)
+            {
+                break;
+            }
+            n++;
+        }
+        if(n==words2Size)
+        {
+            s2[v++]=&words2[m][0];
+        }
+        m++;
+    }
+    while(v<words2Size)
+    {
+        s2[v++]=NULL;
+    }
+    int a,b;
+    a=0;
+    b=0;
+    while(a<words1Size&&s1[a])
+    {
+        a++;
+    }
+    while(b<words2Size&&s2[b])
+    {
+        b++;
+    }
+    int counter=0;
+    int c,d;
+    c=0;
+    d=0;
+    while(c<a)
+    {
+        d=0;
+        while(d<b)
+        {
+            if(!strcmp(s1[c],s2[d]))
+            {
+                counter++;
+                break;
+            }
+            d++;
+        }
+        c++;
+    }
+	return counter;
+}
