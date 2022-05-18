@@ -1,0 +1,61 @@
+char * capitalizeTitle(char * title)
+{
+	int e=strlen(title);
+	int i=0;
+	int counter=1;
+	while(i<e)
+	{
+		if(title[i]==' ')
+		counter++;
+		i++;
+	}
+	int *num=(int *)malloc(sizeof(int)*counter);
+	i=0;
+	int j=0;
+	int counter1=0;
+	while(i<e)
+	{
+		if(title[i]!=' ')
+		{
+			counter1++;
+		}
+		else
+		{
+			num[j++]=counter1;
+			counter1=0;
+		}
+		i++;
+	}
+	num[j++]=counter1;
+	int m=0;
+	int n=0;
+	int tmp=0;
+	while(m<e&&n<j)
+	{
+		tmp=m+num[n];
+		if(num[n]<=2)
+		{
+			while(m<tmp)
+			{
+				if(title[m]<='Z'&&title[m]>='A')
+				title[m]+=32;
+				m++;
+			}
+		}
+		else
+		{
+			if(title[m]<='z'&&title[m]>='a')
+			title[m]-=32;
+			m++;
+			while(m<tmp)
+			{
+				if(title[m]<='Z'&&title[m]>='A')
+				title[m]+=32;
+				m++;
+			}
+		}
+		n++;
+		m++;
+	}
+	return title;
+}
