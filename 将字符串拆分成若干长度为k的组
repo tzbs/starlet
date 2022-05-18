@@ -1,0 +1,38 @@
+char ** divideString(char * s, int k, char fill, int* returnSize)
+{
+	int e1=strlen(s);
+	int m=e1/k;
+	int n=e1%k;
+	char **s1=(char **)malloc(sizeof(char *)*(m+1));
+	int i=0;
+	while(i<m+1)
+	{
+		s1[i]=(char *)malloc(sizeof(char)*(k+1));
+		s1[i][k]='\0';
+		i++;
+	}
+	i=0;
+	int j=0;
+	int a=0;
+	while(a<e1&&i<(m+1))
+	{
+		s1[i][j++]=s[a++];
+		if(j==k)
+		{
+			j=0;
+			i++;
+		}
+	}
+	if(n!=0)
+	{
+		while(n<k)
+		{
+			s1[m][n]=fill;
+			n++;
+		}
+        *returnSize=m+1;
+        return s1;
+	}
+    *returnSize=m;
+	return s1;
+}
