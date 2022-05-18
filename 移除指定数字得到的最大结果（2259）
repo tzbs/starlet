@@ -1,0 +1,47 @@
+char *ctrlc(int m,char *num,int numSize)
+{
+    char *s1=(char *)malloc(sizeof(char)*(numSize));
+    s1[numSize-1]='\0';
+    int i=0;
+    int j=0;
+    while(i<m&&j<numSize-1)
+    {
+        s1[j]=num[i];
+        j++;
+        i++;
+    }
+    i+=1;
+    while(i<numSize&&j<numSize-1)
+    {
+        s1[j]=num[i];
+        j++;
+        i++;
+    }
+    return s1;
+}
+char * removeDigit(char * number, char digit)
+{
+    int e=strlen(number);
+    int i=0;
+    int *s1=(int *)malloc(sizeof(int)*(e+1));
+    s1[e]='\0';
+    int j=0;
+    while(i<e)
+    {
+        if(number[i]==digit)
+        {
+            s1[j++]=i;
+        }
+        i++;
+    }
+    s1[j]='\0';
+	printf("%d\n",j);
+    int n=0;
+    char *s2=ctrlc(s1[0],number,e);
+    while(n<j)
+    {
+		s2=strcmp(s2,ctrlc(s1[n],number,e))>0?s2:ctrlc(s1[n],number,e);
+        n++;
+    }
+    return s2;
+}
