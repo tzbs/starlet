@@ -1,0 +1,22 @@
+int countGoodSubstrings(char * s)
+{
+    int e=strlen(s);
+    if(e<=2)
+    {
+        return 0;
+    }
+    else
+    {
+        int i=1;
+        int counter=0;
+        while(i<e-1)
+        {
+            if(s[i-1]!=s[i]&&s[i-1]!=s[i+1]&&s[i]!=s[i+1])
+            {
+                counter++;
+            }
+            i++;
+        }
+        return counter;
+    }
+}
