@@ -1,0 +1,107 @@
+char * diaohuan(char *s1,int s1Size)
+{
+	int i=0;
+	int j=s1Size-1;
+	char tmp;
+	while(i<j)
+	{
+		tmp=s1[i];
+		s1[i]=s1[j];
+		s1[j]=tmp;
+		i++;
+		j--;
+	}
+	return s1;
+}
+char *huajian1(char *num,int numSize)
+{
+    int i=0;
+    while(num[i]=='0')
+    {
+        num++;
+        if(num[i]=='\0')
+        break;
+    }
+    return num;
+}
+char *trans(char *num,int numSize)
+{
+	char *s1=(char*)malloc(sizeof(char)*(2*numSize+1));
+	s1[2*numSize]='\0';
+	int i=0;
+	int j=0;
+	while(i<numSize)
+	{
+		if(num[i]>='a'&&num[i]<='j')
+		{
+			s1[j++]=num[i]-'a'+'0';
+		}
+		else
+		{
+			s1[j++]=(num[i]-'a')/10+'0';
+			s1[j++]=(num[i]-'a')%10+'0';
+		}
+		i++;
+	}
+	s1[j]='\0';
+    return s1;
+}
+bool isSumEqual(char * firstWord, char * secondWord, char * targetWord)
+{
+	int e1=strlen(firstWord);
+	int e2=strlen(secondWord);
+	char *l1=trans(firstWord,e1);
+	char *l2=trans(secondWord,e2);
+	int m1=strlen(l1);
+	int m2=strlen(l2);
+	int m3=strlen(targetWord);
+	int maxlength=m1<m2?m2:m1;
+	int minlength=m1<m2?m1:m2;
+	int tmp=0;
+	char *s1=(char *)malloc(sizeof(char)*(maxlength+2));
+	s1[maxlength+1]='\0';
+	int i,j;
+	i=m1-1;
+	j=m2-1;
+	int k=0;
+	while(i>=0&&j>=0)
+	{
+		s1[k++]=(l1[i]-'0'+l2[j]-'0'+tmp)%10+'0';
+		tmp=(l1[i]-'0'+l2[j]-'0'+tmp)/10;
+		i--;
+		j--;
+	}
+
+	if(i<0&&j>=0)
+	{
+		while(j>=0)
+		{
+			s1[k++]=(l2[j]-'0'+tmp)%10+'0';
+		  	tmp=(l2[j]-'0'+tmp)/10;
+			j--;	
+		}
+	}
+	else if(i>=0&&j<0)
+	{
+		while(i>=0)
+		{
+			s1[k++]=(l1[i]-'0'+tmp)%10+'0';
+			tmp=(l1[i]-'0'+tmp)/10;
+			i--;
+		}
+	}
+	char *list1;
+	if(tmp>0)
+	{
+		s1[k++]=tmp+'0';
+		list1=diaohuan(s1,k);	
+	}
+	else
+	{
+		s1[k++]='\0';
+		list1=diaohuan(s1,--k);
+	}
+	if(!strcmp(huajian1(list1,strlen(list1)),huajian1(trans(targetWord,m3),strlen(trans(targetWord,m3)))))
+	return true;
+	return false;
+}
