@@ -1,0 +1,26 @@
+int countPrefixes(char ** words, int wordsSize, char * s)
+{
+	int counter=0;
+	int i=0;
+	int j=0;
+	while(i<wordsSize)
+	{
+		while(i<wordsSize&&strlen(s)<strlen(words[i]))
+		{
+			i++;
+		}
+        if(i==wordsSize)
+        return counter;
+		j=0;
+		while(j<strlen(words[i]))
+		{
+			if(words[i][j]!=s[j])
+			break;
+			j++;
+		}
+		if(j==strlen(words[i]))
+		counter++;
+		i++;
+	}
+	return counter;
+}
