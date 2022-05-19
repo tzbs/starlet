@@ -1,0 +1,49 @@
+bool checkZeroOnes(char * s)
+{
+	int i=1;
+	int counter1=0;
+	int e=strlen(s);
+	char *s1=(char *)malloc(sizeof(char)*(e+1+1));
+	s1[e+1]='\0';
+	s1[0]='2';
+	while(i<e+1)
+	{
+		s1[i]='1';
+		i++;
+	}
+	char *l1=&s1[e];
+	while(*l1=='1')
+	{
+		if(strstr(s,l1))
+		{
+			counter1++;
+			l1--;
+		}
+		else
+		break;
+	}
+	int j=1;
+	int counter2=0;
+	char *s2=(char *)malloc(sizeof(char)*(e+2));
+	s2[e+1]='\0';
+	s2[0]='2';
+	while(j<e+1)
+	{
+		s2[j]='0';
+		j++;
+	}
+	char *l2=&s2[e];
+	while(*l2=='0')
+	{
+		if(strstr(s,l2))
+		{
+			counter2++;
+			l2--;
+		}
+		else
+		break;
+	}
+	if(counter1>counter2)
+	return true;
+	return false;
+}
