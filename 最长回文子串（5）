@@ -1,0 +1,45 @@
+int judge(char *s,int sSize)
+{
+	int i=0;
+	int j=sSize-1;
+	while(i<j)
+	{
+		if(s[i]!=s[j])
+		return 0;
+		i++;
+		j--;
+	}
+	return 1;
+}
+char * longestPalindrome(char * s)
+{
+	int e=strlen(s);
+	if(e==1)
+	return s;
+	char *s1=&s[e-1];
+	char *s2=s1-1;
+	int max=1;
+	while(s1>=&s[1])
+	{
+		s2=s1-1;
+		while(s2>=&s[0])
+		{
+			if(judge(s2,s1-s2+1))
+			max=max<s1-s2+1?s1-s2+1:max;
+			s2--;
+		}
+		s1--;
+	}
+	char *s3=&s[0];
+	while(s3<=&s[e-1])
+	{
+		if(judge(s3,max))
+		{
+			if(s3+max<=&s[e-1])
+				*(s3+max)='\0';
+			return s3;
+		}
+		s3++;
+	}
+	return NULL;
+}
