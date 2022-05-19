@@ -1,0 +1,88 @@
+int trans(char *num,int numSize)
+{
+	int i=numSize-1;
+	double sum=0;
+	int j=0;
+	while(i>=0)
+	{
+		sum+=(num[i]-'0')*pow(10,j++);
+		i--;
+	}
+	if(sum>pow(2,31)-1)
+	{
+		return (-1)*pow(2,31);
+	}
+	else
+	{
+		return (int)sum;
+	}
+}
+int strToInt(char* str)
+{
+	int e=strlen(str);
+	int i=0;
+	while(i<e&&str[i]==' ')
+	{
+		i++;
+	}
+	if(i==e)
+	{
+		return 0;
+	}
+	else
+	{
+        char tmp;
+        char *s1=(char *)malloc(sizeof(char)*(e+1));
+        s1[e]='\0';
+        int m=0;
+		if(str[i]!='-'&&str[i]!='+'&&!(str[i]>='0'&&str[i]<='9'))
+		{
+			return 0;
+		}
+		else
+		{
+			if(str[i]=='-')
+			{
+				tmp='-';
+				i+=1;
+			}
+			else if(str[i]=='+')
+			{
+				tmp='+';
+                i+=1;
+			}
+            else if((str[i]>='0'&&str[i]<='9'))
+            {
+                tmp='+';
+            }
+			while(i<e&&(str[i]>='0'&&str[i]<='9'))
+			{
+				s1[m++]=str[i];
+				i++;
+			}
+			s1[m]='\0';
+		}
+        if(trans(s1,m)>=0&&trans(s1,m)<=2*pow(2,31)-1)
+        {
+            if(tmp=='+')
+            {
+                return trans(s1,m);
+            }
+            else
+            {
+                return (-1)*trans(s1,m);
+            }
+        }
+        else
+        {
+            if(tmp=='+')
+            {
+                return pow(2,31)-1;
+            }
+            else
+            {
+                return (-1)*pow(2,31);
+            }
+        }
+    }
+}
