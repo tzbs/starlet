@@ -1,0 +1,130 @@
+int judge0(char *s,int sSize)
+{
+	int i=0;
+	while(i<sSize)
+	{
+		if(s[i]!='a'&&s[i]!='e'&&s[i]!='i'&&s[i]!='o'&&s[i]!='u')
+		return 0;
+		i++;
+	}
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='a')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='e')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='i')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='o')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='u')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	return 1;
+}
+int judge1(char *s,int sSize)
+{
+	int i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='a')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='e')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='i')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='o')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	i=0;
+	while(i<sSize)
+	{
+		if(s[i]=='u')
+		break;
+		i++;
+	}
+	if(i==sSize)
+	return 0;
+	return 1;
+}
+int countVowelSubstrings(char * word)
+{
+	int e=strlen(word);
+	if(e<5)
+	return 0;
+	if(!judge1(word,e))
+	return 0;
+	int counter=0;
+	int i=e-1;
+	int j=e-5;
+	char *s1=&word[i];
+	char *s2=&word[j];
+	while(s1>=&word[4])
+	{
+		s2=s1-4;
+		while(s2>=&word[0])
+		{
+			if(judge0(s2,s1-s2+1))
+			counter++;
+			s2--;
+		}
+		s1--;
+	}
+	return counter;
+}
