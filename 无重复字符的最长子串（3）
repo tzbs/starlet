@@ -1,0 +1,41 @@
+int judge(char *s,int sSize)
+{
+	int i=0;
+	int j=0;
+	while(i<sSize)
+	{
+		j=i;
+		while(j<sSize)
+		{
+			if(s[i]==s[j]&&i!=j)
+			return 0;
+			j++;
+		}
+		i++;
+	}
+	return 1;
+}
+int lengthOfLongestSubstring(char * s)
+{
+	int e=strlen(s);
+	if(e<=1)
+	return e;
+	int max=1;
+	char *s1,*s2;
+	s1=&s[e-1];
+	s2=s1-1;
+	while(s1>=&s[1])
+	{
+		s2=s1-1;
+		while(s2>=&s[0])
+		{
+			if(judge(s2,s1-s2+1))
+			{
+				max=max<s1-s2+1?s1-s2+1:max;
+			}
+			s2--;
+		}
+		s1--;
+	}
+	return max;
+}
