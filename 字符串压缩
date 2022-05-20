@@ -1,0 +1,121 @@
+int calculate(int a)
+{
+    int counter=0;
+    while(a)
+    {
+        a/=10;
+        counter++;
+    }
+    return counter;
+}
+char *huajian(char *s,int sSize)
+{
+    int i=0;
+    int n=0;
+    int j=0;
+    char *s1=(char *)malloc(sizeof(char)*(sSize+1));
+    s1[sSize]='\0';
+    while(i<sSize)
+    {
+        s1[n++]=s[i];
+        j=i+1;
+        while(j<sSize&&s[i]==s[j])
+        {
+           i++;
+           j++;
+        }
+        i=j;
+    }
+    s1[n]='\0';
+    return s1;
+}
+char* compressString(char* S)
+{
+	int e=strlen(S);
+	if(e==0)
+	{
+		return "";
+	}
+	else if(e<=2)
+	{
+		return S;
+	}
+	char *s1=(char*)malloc(sizeof(char)*(e+1));
+	s1[e]='\0';
+	int *num1=(int*)malloc(sizeof(int)*e);
+	int i,j,k;
+	i=0;
+	j=0;
+	k=0;
+    int counter=0;
+    char *s2=huajian(S,e);
+    char *s3=S;
+    int e1=strlen(s2);
+    while(i<e1)
+    {
+        counter=0;
+        while(s3<=&S[e-1])
+        {
+            if(s2[i]==*s3)
+            {
+                counter++;
+            }
+            s3++;
+            if(*s3!=s2[i])
+            {
+                break;
+            }
+        }
+        num1[k++]=counter;
+        i++;  
+    }
+    int number=0;
+    int b=0;
+    while(b<k)
+    {
+        number+=calculate(num1[b]);
+        b++;
+    }
+    if(number+e1<e)
+    {
+        char *ss=(char *)malloc(sizeof(char)*(number+e1+1));
+        ss[number+e1]='\0';
+        int rr=0;
+        int nn=0;
+        int eee1=0;
+        int eee2=0;
+        char tmpp;
+        while(j<number+e1)
+        {
+            ss[j++]=s2[rr];
+            eee1=j;
+            if(num1[nn]>9)
+            {
+                 while(num1[nn]>9)
+                {
+            	    ss[j++]=(num1[nn])%10+'0';
+                    num1[nn]/=10;
+			    }
+                ss[j++]=(num1[nn])%10+'0';
+                eee2=j-1;
+                while(eee1<eee2)
+                {
+                    tmpp=ss[eee1];
+                    ss[eee1]=ss[eee2];
+                    ss[eee2]=tmpp;
+                    eee1++;
+                    eee2--;
+                }
+            }
+			else
+			{
+				ss[j++]=num1[nn]+'0';
+			}
+            rr++;
+            nn++;
+        }
+        ss[j]='\0';
+        return ss;
+    }
+    return S;
+}
