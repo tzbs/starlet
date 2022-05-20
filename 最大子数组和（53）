@@ -1,0 +1,27 @@
+int add1(int i,int *num1,int num1Size)
+{
+	int max=num1[i];
+	int sum=0;
+	while(i<num1Size)
+	{
+		sum+=num1[i];
+		max=max<sum?sum:max;
+		i++;
+	}
+	return max;
+}
+int maxSubArray(int* nums, int numsSize)
+{
+    if(numsSize==1)
+    {
+        return nums[0];
+    }
+	int i=0;
+	int max=nums[0];
+	while(i<numsSize)
+	{
+		max=max<add1(i,nums,numsSize)?add1(i,nums,numsSize):max;
+		i++;
+	}
+	return max;
+}
