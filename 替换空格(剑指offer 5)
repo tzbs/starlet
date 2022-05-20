@@ -1,0 +1,36 @@
+char* replaceSpace(char* s)
+{
+	int e1=strlen(s);
+	if(e1==0)
+	return "";
+	int counter=0;
+	int i=0;
+	while(i<e1)
+	{
+		if(s[i]==' ')
+		counter++;
+		i++;
+	}
+	char *s1=(char *)malloc(sizeof(char)*(e1+2*counter+1));
+	s1[e1+2*counter]='\0';
+	int j=0;
+	int n=0;
+	while(j<e1+2*counter)
+	{
+		if(s[n]!=' ')
+		{
+			s1[j]=s[n];
+			n++;
+			j++;
+		}
+		else
+		{
+			s1[j]='%';
+			s1[j+1]='2';
+			s1[j+2]='0';
+			n++;
+			j+=3;
+		}
+	}
+	return s1;
+}
