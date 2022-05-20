@@ -1,0 +1,23 @@
+char* reverseLeftWords(char* s, int n)
+{
+	int e=strlen(s);
+	char *s1=(char *)malloc(sizeof(char)*(e+e+1));
+	s1[e+e]='\0';
+	int i=0;
+	int j=0;
+	int n0=n;
+	while(n0<e)
+	{
+		s1[n0]=s[n0];
+		n0++;
+	}
+	while(i<n)
+	{
+		s1[e+j]=s[i];
+		j++;
+		i++;
+	}
+	s1[e+j]='\0';
+	char *sm=&s1[n];
+	return sm;
+}
