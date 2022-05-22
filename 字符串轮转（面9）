@@ -1,0 +1,28 @@
+bool isFlipedString(char* s1, char* s2)
+{
+	if(strlen(s1)!=strlen(s2))
+	return false;
+	if(!strcmp(s1,s2))
+	return true;
+	int e=strlen(s1);
+	int i=0;
+	char *s=(char *)malloc(sizeof(char)*(e+e+2));
+	s[e+e+1]='\0';
+	while(i<e)
+	{
+		s[i]=s1[i];
+		i++;
+	}
+	int j=0;
+	char *l1=&s[0];
+	while(j<e)
+	{
+		s[e+j]=s[j];
+		l1=&s[j+1];
+		s[e+j+1]='\0';
+		if(!strcmp(l1,s2))
+		return true;
+		j++;
+	}
+	return false;
+}
