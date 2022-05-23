@@ -1,0 +1,22 @@
+int search(int* nums, int numsSize, int target)
+{
+	int j1=0;
+	int j2=numsSize-1;
+	int i=(j1+j2)/2;
+	while(j1<=j2)
+	{
+		if(nums[i]<target)
+		{
+			j1=i+1;
+			i=(j1+j2)/2;
+		}
+		else if(nums[i]>target)
+		{
+			j2=i-1;
+			i=(j1+j2)/2;
+		}
+		else
+		return i;
+	}
+	return -1;
+}
