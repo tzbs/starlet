@@ -1,0 +1,16 @@
+bool isPowerOfTwo(int n)
+{
+    int n1=n;
+    if(n<=0)
+    {
+        return false;
+    }
+    long long int i=1;
+    while(i<=n1)
+    {
+        if((int)i==n1)
+        return true;
+        i*=2;
+    }
+    return false;
+}
