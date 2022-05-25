@@ -1,0 +1,39 @@
+int* fairCandySwap(int* aliceSizes, int aliceSizesSize, int* bobSizes, int bobSizesSize, int* returnSize)
+{
+    int sum1=0;
+    int sum2=0;
+    int m,n;
+    m=0;
+    n=0;
+    while(m<aliceSizesSize)
+    {
+        sum1+=aliceSizes[m];
+        m++;
+    }
+    while(n<bobSizesSize)
+    {
+        sum2+=bobSizes[n];
+        n++;
+    }
+    int *s1=(int *)malloc(sizeof(int)*2);
+    int i=0;
+    int j=0;
+    while(i<aliceSizesSize)
+    {
+        j=0;
+        while(j<bobSizesSize)
+        {
+            if(sum1-aliceSizes[i]+bobSizes[j]==sum2-bobSizes[j]+aliceSizes[i])
+            {
+                s1[0]=aliceSizes[i];
+                s1[1]=bobSizes[j];
+                *returnSize=2;
+                return s1;
+            }
+            j++;
+        }
+        i++;
+    }
+      *returnSize=2;
+     return s1;
+}
