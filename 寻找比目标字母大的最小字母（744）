@@ -1,0 +1,15 @@
+char nextGreatestLetter(char* letters, int lettersSize, char target)
+{
+    int i=0;
+    while(i<lettersSize)
+    {
+        if(letters[i]>target)
+        {
+            return letters[i];
+            
+        }
+        i++;
+    }
+    return letters[0];
+
+}
