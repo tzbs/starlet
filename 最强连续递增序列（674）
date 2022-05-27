@@ -1,0 +1,26 @@
+int search(int i, int *nums,int numsSize)
+{
+	int counter=1;
+    //int j=i;
+	while(i<numsSize-1)
+	{
+		if(nums[i]>=nums[i+1])
+		break;
+		counter++;
+		i++;
+	}
+	return counter;
+}
+int findLengthOfLCIS(int* nums, int numsSize)
+{
+	int i=0;
+	int j=0;
+	int max=search(0,nums,numsSize);
+	while(i<numsSize)
+	{
+		j=search(i,nums,numsSize);
+		max=max<j?j:max;
+		i++;
+	}
+	return max;
+}
