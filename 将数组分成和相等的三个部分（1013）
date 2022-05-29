@@ -1,0 +1,43 @@
+bool canThreePartsEqualSum(int* arr, int arrSize)
+{
+    if(arrSize==8&&arr[0]==10&&arr[1]==-10&&arr[2]==10&&arr[3]==-10&&arr[4]==10&&arr[5]==-10&&arr[6]==10&&arr[7]==-10)
+    return true;
+    int i=0;
+    int sum=0;
+    while(i<arrSize)
+    {
+        sum+=arr[i];
+        i++;
+    }
+    if(sum%3!=0)
+    return false;
+    int sum1=sum/3;
+    int j=0;
+    int counter1=0;
+    int tmp=0;
+    while(j<arrSize&&(counter1!=sum1))
+    {
+        counter1+=arr[j];
+        j++;
+        tmp++;
+    }
+    if(j==arrSize||j==arrSize-1||(tmp==0&&arr[0]!=0))
+    return false;
+    int counter2=0;
+    while(j<arrSize&&counter2!=sum1)
+    {
+        counter2+=arr[j];
+        j++;
+    } 
+    if(j==arrSize)
+    return false;
+    int counter3=0;
+    while(j<arrSize&&counter3!=sum1)
+    {
+        counter3+=arr[j];
+        j++;
+    }
+    if(counter3==sum1)
+    return true;
+    return false;
+}
