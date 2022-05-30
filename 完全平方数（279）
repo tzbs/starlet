@@ -1,0 +1,32 @@
+int numSquares(int n)
+{
+    int i=0;
+    while(i*i<n)
+    {
+        i++;
+        if(i*i==n)
+        return 1;
+    }
+    int m1=0;
+    int m2=0;
+    while(m1*m1<n)
+    {
+        m2=1;
+        while(m1*m1+m2*m2<n)
+        {
+            m2++;
+            if(m1*m1+m2*m2==n)
+            return 2;
+        }
+        if(m1*m1+m2*m2==n)
+        return 2;
+        m1++;
+    }
+    while(n%4==0)
+    {
+        n/=4;
+    }
+    if(n%8==7)
+    return 4;
+    return 3;
+}
