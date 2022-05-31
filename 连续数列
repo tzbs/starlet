@@ -1,0 +1,20 @@
+int maxSubArray(int* nums, int numsSize)
+{
+    int i=0;
+    int j=0;
+    int sum=0;
+    int max=nums[0];
+    while(i<numsSize)
+    {
+        j=i;
+        sum=0;
+        while(j<numsSize)
+        {
+            sum+=nums[j];
+            max=max<sum?sum:max;
+            j++;
+        }
+        i++;
+    }
+    return max;
+}
