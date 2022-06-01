@@ -1,0 +1,28 @@
+#include<stdio.h>
+int main()
+{
+	int intN,intCounter,flag;
+	unsigned long int ulngFact;
+	char ch;
+	do
+	{
+		do
+		{
+			flag=0;
+			printf("Enter a number(0<n<=12)");
+			scanf("%d",&intN);
+			if((intN<=0)||(intN>12))
+			flag=1;
+		}while(flag);
+		ulngFact=1;
+		for(intCounter=1;intCounter<=intN;intCounter++)
+		{
+			ulngFact=ulngFact*intCounter;
+		}
+		printf("Required factorial is:%lu\n",ulngFact);
+		printf("Do you want to continue?(Y/N): ");
+		scanf(" %c",&ch);
+	}while((ch=='y')||(ch=='Y'));
+	printf("Thank you.\n");
+	return 0;
+}
