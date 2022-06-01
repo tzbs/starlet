@@ -1,0 +1,35 @@
+ int* getRow(int rowIndex, int* returnSize)
+{
+    int **s1=(int **)malloc(sizeof(int *)*(rowIndex+1));
+    int i=1;
+    while(i<=(rowIndex+1))
+    {
+        s1[i-1]=(int *)malloc(sizeof(int)*i);
+        i++;
+    }
+    int m=1;
+    int n=0;
+    s1[0][0]=1;
+    while(m<(rowIndex+1))
+    {
+        n=0;
+        s1[m][n]=1;
+        n++;
+        while(n<m)
+        {
+            s1[m][n]=s1[m-1][n-1]+s1[m-1][n];
+            n++;
+        }
+        s1[m][n]=1;
+        m++;
+    }
+    int j=0;
+    int*s2=(int *)malloc(sizeof(int)*(rowIndex+1));
+    while(j<rowIndex+1)
+    {
+        s2[j]=s1[rowIndex][j];
+        j++;
+    }
+    *returnSize=j;
+    return s2;
+}
