@@ -1,0 +1,21 @@
+int *InsertSort(int *arr,int arrSize)
+{
+    int a,b,c;
+    a=1;
+    while(a<arrSize)
+    {
+        b=arr[a];
+        for(c=a-1;c>=0&&arr[c]>b;c--)
+        {
+            arr[c+1]=arr[c];
+        }
+        arr[c+1]=b;
+        a++;
+    }
+    return &arr[0];
+}
+void sortColors(int* nums, int numsSize)
+{
+    nums=InsertSort(nums,numsSize);
+    return ;
+}
