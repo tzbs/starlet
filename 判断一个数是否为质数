@@ -1,0 +1,49 @@
+/*确定给定的数字是否为质数
+质数是一个正整数，只能被1和它本身整除，前几个质数如下：2，3，5，7，11，13，17，19 除了2之外，所有质数都是奇数
+程序开始执行时，系统会要求你输入2~2000000000范围内的数字，键入此范围内的任何整数，判断该数字是否为质数，输入0终止程序，要确定数字N是否为质数，必须将它除以2~（N-1）之间的所有数字
+并检查余数，如果每个除法的余数都不为0，则数N是质数，否则不是，但实际上可以将N的数字除以2~根号N之间的所有数字并检查余数，*/
+#include<stdio.h>
+#include<math.h>
+int main()
+{
+	int flag,isPrime;
+	long int lngN,lngM,i;
+	do
+	{
+		do
+		{
+			flag=0;
+			printf("Enter 0 to discontinue.\n");
+			printf("Enter a number N(2<=N<=2000000000)\n");
+			printf("to find whether it is prime or not:");
+			scanf("%ld",&lngN);
+			if(lngN==0)
+				break;
+			if((lngN<2)||(lngN>2000000000))
+				flag=1;
+		}while(flag);
+		if(lngN==0)
+			break;
+		if(lngN==2)
+		{
+			printf("\n2 is a prime number\n\n");
+			continue;
+		}
+		isPrime=1;
+		lngM=ceil(sqrt(lngN));
+		for(i=2;i<=lngM;i++)
+		{
+			if((lngN%i)==0)
+			{
+				isPrime=0;
+				break;
+			}
+		}
+		if(isPrime)
+			printf("\n%ld is a prime number\n\n",lngN);
+		else
+			printf("\n%ld is not a prime number\n\n",lngN);
+	}while(1);
+	printf("\nThank you.\n");
+	return 0;
+}
