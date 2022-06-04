@@ -1,0 +1,55 @@
+int* intersect(int* nums1, int nums1Size, int* nums2, int nums2Size, int* returnSize)
+{
+    int i,j;
+    int *s1=(int *)malloc(sizeof(int)*1001);
+    int *s2=(int *)malloc(sizeof(int)*1001);
+    i=0;
+    j=0;
+    while(i<1001)
+    {
+        s1[i]=0;
+        i++;
+    }
+    i=0;
+    while(i<nums1Size)
+    {
+        s1[nums1[i]]++;
+        i++;
+    }
+    while(j<1001)
+    {
+        s2[j]=0;
+        j++;
+    }
+    j=0;
+    while(j<nums2Size)
+    {
+        s2[nums2[j]]++;
+        j++;
+    }
+    int m,n;
+    m=0;
+    n=0;
+    int e=0;
+    int e1=0;
+    int e2=0;
+    int length=1000;
+    int *s3=(int *)malloc(sizeof(int)*length);
+    while(m<1001&&n<1001)
+    {
+        e2=0;
+        if(s1[m]>0&&s2[n]>0)
+        {
+            e1=s1[m]<s2[n]?s1[m]:s2[n];
+            while(e2<e1)
+            {
+                s3[e++]=m;
+                e2++;
+            }
+        }
+        m++;
+        n++;
+    }
+    *returnSize=e;
+    return s3;
+}
