@@ -1,0 +1,27 @@
+#include<stdio.h>
+int main()
+{
+	long int intN,intTemp,intRemainder,intReverse;
+	char ch;
+	do
+	{
+		do
+		{
+			printf("Enter a number(0<N<=30000): ");
+			scanf("%ld",&intN);
+		}while((intN<=0)||(intN>30000));
+		intTemp=intN;
+		intReverse=0;
+		while(intTemp>0)
+		{
+			intRemainder=intTemp%10;
+			intReverse=intReverse*10+intRemainder;
+			intTemp/=10;
+		}
+		printf("The reverse of %ld is %ld.\n",intN,intReverse);
+		printf("Do you want to continue?(Y/N): ");
+		scanf(" %c",&ch);
+	}while((ch=='y')||(ch=='Y'));
+	printf("Thank you.\n");
+	return 0;
+}
