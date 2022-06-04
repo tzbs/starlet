@@ -1,0 +1,105 @@
+void merge(int *arr,int a,int b,int c)
+{
+	int *s1=(int *)malloc(sizeof(int)*(b-a));
+	int *s2=(int *)malloc(sizeof(int)*(c-b+1));
+	int i,j;
+	i=0;
+	j=0;
+	while(i<b-a)
+	{
+		s1[i]=arr[a+i];
+		i++;
+	}
+	while(j<c-b+1)
+	{
+		s2[j]=arr[b+j];
+		j++;
+	}
+	int m=0;
+	int n=0;
+	int t=a;
+	while(m<b-a&&n<c-b+1)
+	{
+		if(s1[m]<s2[n])
+		{
+			arr[t]=s1[m];
+			t++;
+			m++;
+		}
+		else
+		{
+			arr[t]=s2[n];
+			t++;
+			n++;
+		}
+	}
+	while(m<b-a)
+	{
+		arr[t]=s1[m];
+		t++;
+		m++;
+	}
+	while(n<c-b+1)
+	{
+		arr[t]=s2[n];
+		t++;
+		n++;
+	}
+}
+void mergesort(int *arr,int a,int b)
+{
+	if(a==b)
+	return ;
+	else
+	{
+		int m=(a+b)/2;
+		mergesort(arr,a,m);
+		mergesort(arr,m+1,b);
+		merge(arr,a,m+1,b);
+	}
+}
+int search(int *nums,int numsSize)
+{
+    int i=0;
+    while(i<numsSize)
+    {
+        if(nums[i]>=0)
+        return i;
+        i++;
+    }
+    return -1;
+}
+int maximumProduct(int* nums, int numsSize)
+{
+    mergesort(nums,0,numsSize-1);
+    if(search(nums,numsSize)==0)
+    {
+        return nums[numsSize-3]*nums[numsSize-2]*nums[numsSize-1];
+    }
+    else if(search(nums,numsSize)>1&&numsSize-search(nums,numsSize)>=3&&nums[0]*nums[1]*nums[numsSize-1]>nums[numsSize-3]*nums[numsSize-2]*nums[numsSize-1])
+    {
+        return nums[0]*nums[1]*nums[numsSize-1];
+    }
+    else 
+    {
+        int i,j,k;
+        i=0;
+        int max=nums[0]*nums[1]*nums[2];
+        while(i<numsSize-2)
+        {
+            j=i+1;
+            while(j<numsSize-1)
+            {
+                k=j+1;
+                while(k<numsSize)
+                {
+                    max=max<nums[i]*nums[j]*nums[k]?nums[i]*nums[j]*nums[k]:max;
+                    k++;
+                }
+                j++;
+            }
+            i++;
+        }
+        return max;
+    }
+}
