@@ -1,0 +1,77 @@
+ void merge(int *nums,int a,int b,int c)
+ {
+     int *s1=(int *)malloc(sizeof(int)*(b-a));
+     int *s2=(int *)malloc(sizeof(int)*(c-b+1));
+     int i;
+     i=0;
+     while(i<b-a)
+     {
+         s1[i]=nums[a+i];
+         i++;
+     }
+     i=0;
+     while(i<c-b+1)
+     {
+         s2[i]=nums[b+i];
+         i++;
+     }
+     int m,n,k;
+     m=0;
+     n=0;
+     k=a;
+     while(m<b-a&&n<c-b+1)
+     {
+         if(s1[m]<s2[n])
+         {
+             nums[k]=s1[m];
+             k++;
+             m++;
+         }
+         else
+         {
+             nums[k]=s2[n];
+             k++;
+             n++;
+         }
+     }
+     while(m<b-a)
+     {
+        nums[k]=s1[m];
+        k++;
+        m++;
+     }
+     while(n<c-b+1)
+     {
+         nums[k]=s2[n];
+         k++;
+         n++;
+     }
+ }
+ void mergesort(int *nums,int a,int b)
+ {
+     if(a==b)
+     {
+         return;
+     }
+     else
+     {
+         int m=(a+b)/2;
+         mergesort(nums,a,m);
+         mergesort(nums,m+1,b);
+         merge(nums,a,m+1,b);
+     }
+ }
+int* sortArray(int* nums, int numsSize, int* returnSize)
+{
+    mergesort(nums,0,numsSize-1);
+    int i=0;
+    int e=0;
+    int *s1=(int *)malloc(sizeof(int)*numsSize);
+    while(i<numsSize)
+    {
+        s1[e++]=nums[i];
+        i++;
+    }
+    *returnSize=e;
+    return s1;
+}
