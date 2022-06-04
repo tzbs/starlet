@@ -1,0 +1,73 @@
+void merge(int *arr,int a,int b,int c)
+{
+	int *s1=(int *)malloc(sizeof(int)*(b-a));
+	int *s2=(int *)malloc(sizeof(int)*(c-b+1));
+	int i,j;
+	i=0;
+	j=0;
+	while(i<b-a)
+	{
+		s1[i]=arr[a+i];
+		i++;
+	}
+	while(j<c-b+1)
+	{
+		s2[j]=arr[b+j];
+		j++;
+	}
+	int m=0;
+	int n=0;
+	int t=a;
+	while(m<b-a&&n<c-b+1)
+	{
+		if(s1[m]<s2[n])
+		{
+			arr[t]=s1[m];
+			t++;
+			m++;
+		}
+		else
+		{
+			arr[t]=s2[n];
+			t++;
+			n++;
+		}
+	}
+	while(m<b-a)
+	{
+		arr[t]=s1[m];
+		t++;
+		m++;
+	}
+	while(n<c-b+1)
+	{
+		arr[t]=s2[n];
+		t++;
+		n++;
+	}
+}
+void mergesort(int *arr,int a,int b)
+{
+	if(a==b)
+	return ;
+	else
+	{
+		int m=(a+b)/2;
+		mergesort(arr,a,m);
+		mergesort(arr,m+1,b);
+		merge(arr,a,m+1,b);
+	}
+}
+int minMoves2(int* nums, int numsSize)
+{
+     mergesort(nums,0,numsSize-1);
+    int e=nums[(0+numsSize)/2];
+    int m=0;
+    int counter1=0;
+    while(m<numsSize)
+    {
+        counter1+=abs(nums[m]-e);
+        m++;
+    }
+    return counter1;
+}
