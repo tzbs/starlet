@@ -1,0 +1,23 @@
+int* smallerNumbersThanCurrent(int* nums, int numsSize, int* returnSize)
+{
+    int *s1=(int *)malloc(sizeof(int)*numsSize);
+    int i=0;
+    int j=0;
+    int k=0;
+    int counter=0;
+    while(i<numsSize)
+    {
+        j=0;
+        counter=0;
+        while(j<numsSize)
+        {
+            if(nums[j]<nums[i])
+                counter++;
+            j++;
+        }
+        s1[k++]=counter;
+        i++;
+    }
+    *returnSize=k;
+    return s1;
+}
