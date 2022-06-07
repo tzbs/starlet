@@ -1,0 +1,83 @@
+ int search1(int m)
+ {
+     int counter=0;
+     while(m)
+     {
+         if(m%2==1)
+         {
+             counter++;
+         }
+         m/=2;
+     }
+     return counter;
+ } 
+int* sortByBits(int* arr, int arrSize, int* returnSize)
+{
+    int m,n,tmp;
+    m=arrSize-1;
+    while(m>=0)
+    {
+        n=0;
+        while(n<m)
+        {
+            if(search1(arr[n])>search1(arr[m]))
+            {
+                tmp=arr[n];
+                arr[n]=arr[m];
+                arr[m]=tmp;
+            }
+            n++;
+        }
+        m--;
+    }
+        int rr=0;
+    while(rr<arrSize)
+    {
+        printf("%d ",arr[rr]);
+        rr++;
+    }
+    int a,b,c,tmp1,counter1,tt;
+    a=0;
+    counter1=0;
+    while(a<arrSize)
+    {
+        while(a<arrSize-1)
+        {
+            if(search1(arr[a])==search1(arr[a+1]))
+            {
+                a++;
+                counter1++;
+            }
+            else
+            break;
+        }
+        b=a;
+        tt=b-counter1;
+        while(b>=tt)
+        {
+            c=tt;
+            while(c>=0&&c<b)
+            {
+                if(arr[c]>arr[b])
+                {
+                    tmp1=arr[c];
+                    arr[c]=arr[b];
+                    arr[b]=tmp1;
+                }
+                c++;
+            }
+            b--;
+        }
+        counter1=0;
+        a++;
+    }
+    int *s3=(int *)malloc(sizeof(int)*arrSize);
+    int e=0;
+    while(e<arrSize)
+    {
+        s3[e]=arr[e];
+        e++;
+    }
+    *returnSize=e;
+    return s3;
+}
