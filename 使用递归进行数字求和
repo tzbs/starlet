@@ -1,0 +1,21 @@
+#include<stdio.h>
+int summation(int intM);
+int main()
+{
+	int intN=0;
+	scanf("%d",&intN);
+	printf("%d\n",summation(intN));
+	
+	return 0;
+}
+int summation(int intM)
+{
+	if(intM==1)
+	{
+		return 1;
+	}
+	else
+	{
+		return intM+summation(intM-1);
+	}
+}
