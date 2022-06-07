@@ -1,0 +1,87 @@
+void merge(char *arr,int a,int b,int c)
+{
+	char *s1=(char *)malloc(sizeof(char)*(b-a));
+	char *s2=(char *)malloc(sizeof(char)*(c-b+1));
+	int i,j;
+	i=0;
+	j=0;
+	while(i<b-a)
+	{
+		s1[i]=arr[a+i];
+		i++;
+	}
+	while(j<c-b+1)
+	{
+		s2[j]=arr[b+j];
+		j++;
+	}
+	int m=0;
+	int n=0;
+	int t=a;
+	while(m<b-a&&n<c-b+1)
+	{
+		if(s1[m]<s2[n])
+		{
+			arr[t]=s1[m];
+			t++;
+			m++;
+		}
+		else
+		{
+			arr[t]=s2[n];
+			t++;
+			n++;
+		}
+	}
+	while(m<b-a)
+	{
+		arr[t]=s1[m];
+		t++;
+		m++;
+	}
+	while(n<c-b+1)
+	{
+		arr[t]=s2[n];
+		t++;
+		n++;
+	}
+}
+void mergesort(char *arr,int a,int b)
+{
+	if(a==b)
+	return ;
+	else
+	{
+		int m=(a+b)/2;
+		mergesort(arr,a,m);
+		mergesort(arr,m+1,b);
+		merge(arr,a,m+1,b);
+	}
+}
+bool checkIfCanBreak(char * s1, char * s2)
+{
+    mergesort(s1,0,strlen(s1)-1);
+    mergesort(s2,0,strlen(s2)-1);
+    int m,n;
+    m=0;
+    n=0;
+    while(m<strlen(s1))
+    {
+        if(s1[m]<=s2[m])
+        m++;
+        else
+        break;
+    }
+    if(m==strlen(s1))
+    return true;
+    while(n<strlen(s2))
+    {
+        if(s1[n]>=s2[n])
+        n++;
+        else
+        break;
+    }
+    if(n==strlen(s2))
+    return true;
+    return false;
+}
