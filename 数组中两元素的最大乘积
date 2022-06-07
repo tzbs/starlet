@@ -1,0 +1,17 @@
+int maxProduct(int* nums, int numsSize)
+{
+    int i,j;
+    i=0;
+    int max=0;
+    while(i<numsSize-1)
+    {
+        j=i+1;
+        while(j<numsSize)
+        {
+            max=max<(nums[i]-1)*(nums[j]-1)?(nums[i]-1)*(nums[j]-1):max;
+            j++;
+        }
+        i++;
+    }
+    return max;
+}
