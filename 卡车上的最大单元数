@@ -1,0 +1,57 @@
+void bubblesort(int **arr,int arrSize)
+{
+    int i,j,tmp1,tmp2; 
+    i=arrSize-1;
+    while(i>=0)
+    {
+        j=0;
+        while(j<i)
+        {
+            if(arr[j][1]>arr[i][1])
+            {
+                tmp1=arr[j][1];
+                tmp2=arr[j][0];
+                arr[j][1]=arr[i][1];
+                arr[j][0]=arr[i][0];
+                arr[i][1]=tmp1;
+                arr[i][0]=tmp2;
+            }
+            j++;
+        }
+
+
+        
+        i--;
+    }
+}
+int maximumUnits(int** boxTypes, int boxTypesSize, int* boxTypesColSize, int truckSize)
+{
+    bubblesort(boxTypes,boxTypesSize);
+    int sum1=0;
+    int sum=0;
+    int counter=0;
+    int i,j;
+    i=1;
+    j=1;
+    while(counter<=truckSize)
+    {
+        i=1;
+        sum1=0;
+        while(boxTypesSize-j>=0&&i<=truckSize&&i<=boxTypes[boxTypesSize-j][0])
+        {
+            sum1=i*boxTypes[boxTypesSize-j][1];
+            i++;
+        }
+        j++;
+        sum+=sum1;
+        counter+=i-1;
+         if(boxTypesSize-j<0)
+        break;
+    }
+    while(counter>truckSize)
+    {
+        sum-=boxTypes[boxTypesSize-j+1][1];
+        counter--;
+    }
+    return sum;
+}
