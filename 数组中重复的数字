@@ -1,0 +1,17 @@
+int findRepeatNumber(int* nums, int numsSize)
+{
+    int i=0;
+    int j=0;
+    while(i<numsSize-1)
+    {
+        j=i+1;
+        while(j<numsSize)
+        {
+            if(nums[i]==nums[j])
+            return nums[i];
+            j++;
+        }
+        i++;
+    }
+    return;
+}
