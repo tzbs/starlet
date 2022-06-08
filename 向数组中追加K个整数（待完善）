@@ -1,0 +1,139 @@
+void PercDown(int array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ int * HeapSort(int array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+long long minimalKSum(int* nums, int numsSize, int k)
+{
+    int i,j;
+    i=0;
+    int max=nums[0];
+    j=0;
+    while(j<numsSize)
+    {
+        max=max<nums[j]?nums[j]:max;
+        j++;
+    }
+    int length=max<numsSize?numsSize:max;
+    int *s1=(int *)malloc(sizeof(int)*length);
+    while(i<length)
+    {
+        s1[i]=i+1;
+        i++;
+    }
+    int r1=0;
+    while(r1<length)
+    {
+        printf("%d ",s1[r1]);
+        r1++;
+    }
+    printf("\n");
+    int *s2=(int *)malloc(sizeof(int)*(length+k));
+    int k1=0;
+    while(k1<length+k)
+    {
+        s2[k1]=0;
+        k1++;
+    }
+    nums=HeapSort(nums,numsSize);
+    int m=removeDuplicates(nums,numsSize);
+    int *s3=(int *)malloc(sizeof(int)*length);
+    int n1=0;
+    while(n1<length)
+    {
+        s3[n1]=0;
+        n1++;
+    }
+    int n2=0;
+    while(n2<m)
+    {
+        s3[nums[n2]-1]=nums[n2];
+        //printf("%d ",s3[nums[n2]-1]);
+        n2++;
+    }
+    int u=0;
+    while(u<length)
+    {
+        printf("%d ",s3[u]);
+        u++;
+    }
+    printf("\n");
+    int k2=0;
+    int k3=0;
+    while(k2<length)
+    {
+        if(s3[k2]!=s1[k2])
+        {
+            s2[k3]=s1[k2];
+            printf("%d ",s2[k3]);
+            k3++;
+        }
+        k2++;
+    }
+    int k4=1;
+    printf("\n%d ",k3);
+    while(k3<length)
+    {
+        s2[k3]=max+k4;
+        printf("%d ",s2[k3]);
+        k4++;
+        k3++;
+    }
+    long long int sum=0;
+    int k5=0;
+    while(k5<k)
+    {
+        sum+=s2[k5];
+        k5++;
+    }
+    return sum;
+}
