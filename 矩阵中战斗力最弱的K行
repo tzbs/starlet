@@ -1,0 +1,52 @@
+int* kWeakestRows(int** mat, int matSize, int* matColSize, int k, int* returnSize)
+{
+    int i,j,k1;
+    i=0;
+    j=0;
+    k1=0;
+    int counter=0;
+    int *s1=(int *)malloc(sizeof(int)*matSize);
+    while(i<matSize)
+    {
+        j=0;
+        counter=0;
+        while(j<*matColSize&&mat[i][j]!=0)
+        {
+            if(mat[i][j]==1)
+            counter++;
+            j++;
+        }
+        s1[k1++]=counter;
+        i++;
+    }
+    int *s2=(int *)malloc(sizeof(int)*matSize);
+    int r=0;
+    while(r<matSize)
+    {
+        s2[r]=r;
+        r++;
+    }
+    int a,b,tmp,tmp1;
+    a=matSize-1;
+    b=0;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(s1[b]>s1[a]||(s1[b]==s1[a]&&s2[b]>s2[a]))
+            {
+                tmp=s2[b];
+                s2[b]=s2[a];
+                s2[a]=tmp;
+                tmp1=s1[b];
+                s1[b]=s1[a];
+                s1[a]=tmp1;
+            }
+            b++;
+        }
+        a--;
+    }
+    *returnSize=k;
+    return s2;
+}
