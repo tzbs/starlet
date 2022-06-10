@@ -1,0 +1,35 @@
+void insertsort(int *nums,int numsSize)
+{
+    int a,b,c;
+    a=1;
+    while(a<numsSize)
+    {
+        c=nums[a];
+        for(b=a-1;b>=0&&nums[b]>c;b--)
+        {
+            nums[b+1]=nums[b];
+        }
+        nums[b+1]=c;
+        a++;
+    }
+}
+int missingNumber(int* nums, int numsSize)
+{
+    insertsort(nums,numsSize);
+    int *s1=(int *)malloc(sizeof(int)*(numsSize+1));
+    int i=0;
+    while(i<numsSize+1)
+    {
+        s1[i]=i;
+        i++;
+    }
+    int j=0;
+    while(j<numsSize)
+    {
+        if(nums[j]!=s1[j])
+        return s1[j];
+        j++;
+    }
+    return s1[j];
+
+}
