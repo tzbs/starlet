@@ -1,0 +1,30 @@
+void insertSort(int *nums,int numsSize)
+{
+    int a,b,c;
+    a=1;
+    while(a<numsSize)
+    {
+        c=nums[a];
+        for(b=a-1;b>=0&&nums[b]>c;b--)
+        {
+            nums[b+1]=nums[b];
+        }
+        nums[b+1]=c;
+        a++;
+    }
+}
+bool canBeEqual(int* target, int targetSize, int* arr, int arrSize)
+{
+    if(targetSize!=arrSize)
+    return false;
+    insertSort(target,targetSize);
+    insertSort(arr,arrSize);
+    int i=0;
+    while(i<arrSize)
+    {
+        if(target[i]!=arr[i])
+        return false;
+        i++;
+    }
+    return true;
+}
