@@ -1,0 +1,60 @@
+int abb(int *arr,int arrSize,int target,int m)
+{
+    int j=0;
+    int sum=0;
+    while(j<arrSize)
+    {
+        if(arr[j]>m)
+        {
+            sum+=m;
+        }
+        else
+        {
+            sum+=arr[j];
+        }
+        j++;
+    }
+    return abs(sum-target);
+}
+int findBestValue(int* arr, int arrSize, int target)
+{
+    int i=0;
+    int max=0;
+    int sum=0;
+    int counter=0;
+    while(i<arrSize)
+    {
+        max=max<arr[i]?arr[i]:max;
+        i++;
+    }
+    i=0;
+    int j=0;
+    int min=abs(max*arrSize-target);
+    while(i<=max)
+    {
+        j=0;
+        sum=0;
+        while(j<arrSize)
+        {
+            if(arr[j]>i)
+            {
+                sum+=i;
+            }
+            else
+            {
+                sum+=arr[j];
+            }
+            j++;
+        }
+        min=min<abs(sum-target)?min:abs(sum-target);
+        i++;
+    }
+    int value=0;
+    while(value<=max)
+    {
+        if(min==abb(arr,arrSize,target,value))
+            return value;
+        value++; 
+    }
+    return;
+}
