@@ -1,0 +1,74 @@
+int judge(int m)
+{
+    int counter=0;
+    while(m!=1)
+    {
+        if(m%2==0)
+        {
+            m/=2;
+        }
+        else
+        {
+            m=3*m+1;
+        }
+        counter++;
+    }
+    return counter;
+}
+int getKth(int lo, int hi, int k)
+{
+    int *s1=(int *)malloc(sizeof(int)*(hi-lo+1));
+    int i=lo;
+    int j=0;
+    while(i<=hi)
+    {
+        s1[j++]=judge(i);
+        printf("%d ",judge(i));
+        i++;
+    }
+    int m=0;
+    int *s2=(int *)malloc(sizeof(int)*(hi-lo+1));
+    while(m<hi-lo+1)
+    {
+        s2[m]=lo+m;
+        m++;
+    }
+    int a,b,c;
+    a=hi-lo;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(s1[b]>s1[a])
+            {
+                c=s2[b];
+                s2[b]=s2[a];
+                s2[a]=c;
+                c=s1[b];
+                s1[b]=s1[a];
+                s1[a]=c;
+            }
+            b++;
+        }
+        a--;
+    }
+    int p,q,r;
+    p=0;
+    while(p<(hi-lo))
+    {
+        r=p+1;
+        while(r<(hi-lo+1)&&judge(s2[p])==judge(s2[r]))
+        {
+            if(s2[p]>s2[r])
+            {
+                q=s2[p];
+                s2[p]=s2[r];
+                s2[r]=q;
+            }
+            r++;
+        }
+        p++;
+    }
+    return s2[k-1];
+}
