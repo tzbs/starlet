@@ -1,0 +1,121 @@
+  void PercDown(int array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ int * HeapSort(int array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+int* topKFrequent(int* nums, int numsSize, int k, int* returnSize)
+{
+     int *s2=(int *)malloc(sizeof(int)*numsSize);
+    int n=0;
+    while(n<numsSize)
+    {
+        s2[n]=nums[n];
+        n++;
+    }
+    s2=HeapSort(s2,numsSize);
+    int m=removeDuplicates(s2,numsSize);
+    int ww=0;
+    while(ww<m)
+    {
+        ww++;
+    }
+    int rr1=0;
+    int rr2=0;
+    int ee=0;
+    int counter=0;
+    int *arr=(int *)malloc(sizeof(int)*m);
+    while(rr1<m)
+    {
+        rr2=0;
+        counter=0;
+        while(rr2<numsSize)
+        {
+            if(nums[rr2]==s2[rr1])
+                counter++;
+            rr2++;
+        }
+        arr[ee]=counter;
+        ee++;
+        rr1++;
+    }
+    int a,b,c;
+    a=m-1;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(arr[b]>arr[a])
+            {
+                c=s2[b];
+                s2[b]=s2[a];
+                s2[a]=c;
+                c=arr[b];
+                arr[b]=arr[a];
+                arr[a]=c;
+            }
+            b++;
+        }
+        a--;
+    }
+    int *s5=(int *)malloc(sizeof(int)*k);
+    int n1=m-1;
+    int n2=0;
+    while(n2<k)
+    {
+        s5[n2]=s2[n1];
+        n1--;
+        n2++;
+    }
+    *returnSize=k;
+    return s5;
+}
