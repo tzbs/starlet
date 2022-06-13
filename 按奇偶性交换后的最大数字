@@ -1,0 +1,60 @@
+int judge(int num)
+{
+    int counter=0;
+    while(num)
+    {
+        num/=10;
+        counter++;
+    }
+    return counter;
+}
+int largestInteger(int num)
+{
+    int e=judge(num);
+    int i=0;
+    int *s1=(int *)malloc(sizeof(int)*e);
+    while(num)
+    {
+        s1[i++]=num%10;
+        num/=10;
+    }
+    int tmp;
+    int a,b,c;
+    a=e-1;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(s1[b]>s1[a]&&(s1[b]%2==0&&s1[a]%2==0||s1[b]%2==1&&s1[a]%2==1))
+            {
+                tmp=s1[b];
+                s1[b]=s1[a];
+                s1[a]=tmp;
+            }
+            b++;
+        }
+        a--;
+    }
+    int j;
+    i=e-1;
+    j=0;
+    while(j<i)
+    {
+        tmp=s1[j];
+        s1[j]=s1[i];
+        s1[i]=tmp;
+        j++;
+        i--;
+    }
+    int sum=0;
+    i=e-1;
+    j=0;
+    while(i>=0)
+    {
+        sum+=s1[i]*pow(10,j);
+        j++;
+        i--;
+    }
+    return sum;
+}
