@@ -1,0 +1,116 @@
+int judge(int *nums,int numsSize)
+{
+    int i=0;
+    int tmp=1;
+    while(i<numsSize-1)
+    {
+        if(nums[i]!=nums[i+1])
+        {
+            tmp=0;
+            return tmp;
+        }
+        i++;
+    }
+    return tmp;
+}
+ void PercDown(int array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ int * HeapSort(int array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+int * copy(int *nums,int numsSize)
+{
+    int i=0;
+    int *arr1=(int *)malloc(sizeof(int)*numsSize);
+    while(i<numsSize)
+    {
+        arr1[i]=nums[i];
+        i++;
+    }
+    return arr1;
+}
+int reductionOperations(int* nums, int numsSize)
+{
+    int counter=0;
+    int max1=0;
+    int max2=0;
+    int i=0;
+    int *s1;
+    int m=0;
+    while(!judge(nums,numsSize))
+    {
+        i=0;
+        s1=copy(nums,numsSize);
+        s1=HeapSort(s1,numsSize);
+        m=removeDuplicates(s1,numsSize);
+        if(m!=1)
+        {
+            max1=s1[m-1];
+            max2=s1[m-2];
+            while(i<numsSize)
+            {
+                if(nums[i]==max1)
+                {
+                    nums[i]=max2;
+                    counter++;
+                    break;
+                }
+                i++;
+            }
+        }
+        else
+        {
+            return counter;
+        }
+    }
+    return counter;
+}
