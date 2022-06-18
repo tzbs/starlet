@@ -1,0 +1,114 @@
+char * arrangeWords(char * text)
+{
+    int counter=1;
+    int i=0;
+    int e=strlen(text);
+    while(i<e)
+    {
+        if(text[i]==' ')
+            counter++;
+        i++;
+    }
+    int *s1=(int *)malloc(sizeof(int)*counter);
+    i=0;
+    int m=0;
+    int counter1=0;
+    while(i<e)
+    {
+        counter1=0;
+        while(i<e&&text[i]!=' ')
+        {
+            counter1++;
+            i++;
+        }
+        s1[m++]=counter1;
+        i++;
+    }
+    int a,b,c;
+    char *tmp;
+    char *s2=(char *)malloc(sizeof(char)*e);
+    char **arr=(char **)malloc(sizeof(char *)*counter);
+    i=0;
+    while(i<counter)
+    {
+        arr[i]=(char *)malloc(sizeof(char)*(s1[i]+1));
+        arr[i][s1[i]]='\0';
+        i++;
+    }
+    i=0;
+    a=0;
+    b=0;
+    c=0;
+    while(i<counter)
+    {
+        a=0;
+        while(b<counter&&a<s1[b])
+        {
+            arr[i][a]=text[c];
+            a++;
+            c++;
+        }
+        b++;
+        c++;
+        i++;
+    }
+    int *se=(int *)malloc(sizeof(int)*counter);
+    i=0;
+    while(i<counter)
+    {
+        se[i]=0+i;
+        i++;
+    }
+    a=counter-1;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(s1[b]>s1[a]||(s1[b]==s1[a]&&se[b]>se[a]))
+            {
+                tmp=arr[b];
+                arr[b]=arr[a];
+                arr[a]=tmp;
+                c=s1[b];
+                s1[b]=s1[a];
+                s1[a]=c;
+                c=se[b];
+                se[b]=se[a];
+                se[a]=c;
+            }
+            b++;
+        }
+        a--;
+    }
+    i=0;
+    a=0;
+    b=0;
+    c=0;
+    char *text1=(char *)malloc(sizeof(char)*(e+1));
+    text1[e]='\0';
+    while(i<counter)
+    {
+        a=0;
+        while(c<e&&b<counter&&a<s1[b])
+        {
+            text1[c]=arr[i][a];
+            a++;
+            c++;
+        }
+        b++;
+        text1[c++]=' ';
+        i++;
+    }
+    c--;
+    text1[c]='\0';
+    i=0;
+    while(i<e)
+    {
+        if(text1[i]>='A'&&text1[i]<='Z')
+            text1[i]+=32;
+        i++;
+    }
+    text1[0]-=32;
+    return text1;
+}
