@@ -1,0 +1,144 @@
+void PercDown(char array[],int s,int n)
+ {
+     int q;
+     char t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ char * HeapSort(char array[],int n)
+ {
+     int s;
+     char t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(char* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+char * frequencySort(char * s)
+{
+    int e='z'-'0'+1<strlen(s)+1?strlen(s)+1:'z'-'0'+1;
+    int *s1=(int *)malloc(sizeof(int)*e);
+    int i=0;
+    while(i<e)
+    {
+        s1[i]=0;
+        i++;
+    }
+    i=0;
+    while(i<strlen(s))
+    {
+        s1[s[i]-'0']++;
+        i++;
+    }
+    s=HeapSort(s,strlen(s));
+    int m=removeDuplicates(s,strlen(s));
+    s[m]='\0';
+    i=0;
+    int *s2=(int *)malloc(sizeof(int)*e);
+    i=0;
+    while(i<e)
+    {
+        s2[i]=0;
+        i++;
+    }
+    i=0;
+    int j=0;
+    while(i<e)
+    {
+        if(s1[i]!=0)
+            s2[j++]=s1[i];
+        i++;
+    }
+    int a,b,c;
+    a=m-1;
+    char tmp;
+    while(a>0)
+    {
+        b=0;
+        while(b<a)
+        {
+            if(s2[b]>s2[a])
+            {
+                tmp=s[b];
+                s[b]=s[a];
+                s[a]=tmp;
+                c=s2[b];
+                s2[b]=s2[a];
+                s2[a]=c;
+            }
+            b++;
+        }
+        a--;
+    }
+    char *s3=(char *)malloc(sizeof(char)*m);
+    i=0;
+    while(i<m)
+    {
+        s3[i]=s[i];
+        i++;
+    }
+    i=0;
+    a=0;
+    b=0;
+    while(i<m)
+    {
+        a=0;
+        while(a<s2[i])
+        {
+            s[b++]=s3[i];
+            a++;
+        }
+        i++;
+    }
+    int u,v;
+    u=0;
+    v=strlen(s)-1;
+    char tmp1;
+    while(u<v)
+    {
+        tmp1=s[u];
+        s[u]=s[v];
+        s[v]=tmp1;
+        u++;
+        v--;
+    }
+    return s;
+}
