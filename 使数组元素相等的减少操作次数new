@@ -1,0 +1,110 @@
+void PercDown(int array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ int * HeapSort(int array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+int reductionOperations(int* nums, int numsSize)
+{
+    nums=HeapSort(nums,numsSize);
+    int maxlength=numsSize<nums[numsSize-1]+1?nums[numsSize-1]+1:numsSize;
+    int *s1=(int *)malloc(sizeof(int)*maxlength);
+    int i=0;
+    while(i<maxlength)
+    {
+        s1[i]=0;
+        i++;
+    }
+    i=0;
+    while(i<numsSize)
+    {
+        s1[nums[i]]++;
+        i++;
+    }
+    int *s2=(int *)malloc(sizeof(int)*numsSize);
+    i=0;
+    while(i<numsSize)
+    {
+        s2[i]=nums[i];
+        i++;
+    }
+    int m=removeDuplicates(s2,numsSize);
+    if(m==1)
+        return 0;
+    else
+    {
+        int *s3=(int *)malloc(sizeof(int)*m);
+        i=0;
+        while(i<m)
+        {
+            s3[i]=0+i;
+            i++;
+        }
+        int *s4=(int *)malloc(sizeof(int)*m);
+        i=0;
+        int j=0;
+        while(i<maxlength)
+        {
+            if(s1[i]!=0)
+                s4[j++]=s1[i];
+            i++;
+        }
+        int a,c;
+        a=m-1;
+        c=0;
+        while(a>=0)
+        {
+            c+=s3[a]*s4[a];
+            a--;
+        }
+        return c;
+    }
+}
