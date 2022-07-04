@@ -1,0 +1,101 @@
+  void PercDown(int array[],int s,int n)
+ {
+     int q;
+     int t;
+     t=array[s];
+     while((q=2*s+1)<n)
+     {
+         if(q<n-1&&array[q]<array[q+1])
+         q++;
+         if(t<array[q])
+         {
+             array[(q-1)/2]=array[q];
+             s=q;
+         }
+         else
+         break;
+     }
+     array[(q-1)/2]=t;
+ }
+ int * HeapSort(int array[],int n)
+ {
+     int s;
+     int t;
+     s=(n-1)/2;
+     while(s>=0)
+     {
+        PercDown(array,s,n);
+        s--;
+     }
+     s=n-1;
+     while(s>0)
+     {
+         t=array[0];
+         array[0]=array[s];
+         array[s]=t;
+         PercDown(array,0,s);
+         s--;
+     }
+     return &array[0];
+ }
+ int removeDuplicates(int* nums, int numsSize) {
+    if (numsSize == 0) {
+        return 0;
+    }
+    int fast = 1, slow = 1;
+    while (fast < numsSize) {
+        if (nums[fast] != nums[fast - 1]) {
+            nums[slow] = nums[fast];
+            ++slow;
+        }
+        ++fast;
+    }
+    return slow;
+}
+int search(int* nums, int numsSize, int target)
+{
+	int j1=0;
+	int j2=numsSize-1;
+	int i=(j1+j2)/2;
+	while(j1<=j2)
+	{
+		if(nums[i]<target)
+		{
+			j1=i+1;
+			i=(j1+j2)/2;
+		}
+		else if(nums[i]>target)
+		{
+			j2=i-1;
+			i=(j1+j2)/2;
+		}
+		else
+		return i;
+	}
+	return -1;
+}
+int* arrayRankTransform(int* arr, int arrSize, int* returnSize)
+{
+    int *s1=(int *)malloc(sizeof(int)*arrSize);
+    if(arrSize==0)
+    {
+        *returnSize=0;
+        return s1;
+    }
+    int i=0;
+    while(i<arrSize)
+    {
+        s1[i]=arr[i];
+        i++;
+    }
+    i=0;
+    s1=HeapSort(s1,arrSize);
+    int m=removeDuplicates(s1,arrSize);
+    while(i<arrSize)
+    {
+         arr[i]=1+search(s1,m,arr[i]);
+         i++;
+    }
+    *returnSize=arrSize;
+    return arr;
+}
