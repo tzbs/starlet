@@ -1,0 +1,14 @@
+int tribonacci(int n)
+{
+    int *s1=(int *)malloc(sizeof(int)*38);
+    int i=3;
+    s1[0]=0;
+    s1[1]=1;
+    s1[2]=1;
+    while(i<38)
+    {
+        s1[i]=s1[i-1]+s1[i-2]+s1[i-3];
+        i++;
+    }
+    return s1[n];
+}
