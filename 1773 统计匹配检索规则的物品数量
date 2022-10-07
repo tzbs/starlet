@@ -1,0 +1,14 @@
+int countMatches(char *** items, int itemsSize, int* itemsColSize, char * ruleKey, char * ruleValue)
+{
+    int i=0;
+    int counter=0;
+    while(i<itemsSize)
+    {
+        if((strcmp(items[i][0],ruleValue)==0&&strcmp(ruleKey,"type")==0)||(strcmp(items[i][1],ruleValue)==0&&strcmp(ruleKey,"color")==0)||(strcmp(items[i][2],ruleValue)==0&&strcmp(ruleKey,"name")==0))
+        {
+            counter++;
+        }
+        i++;
+    }
+    return counter;
+}
